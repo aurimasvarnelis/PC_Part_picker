@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using PC_Part_picker.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace PC_Part_picker
 {
     public class Startup
@@ -24,6 +27,9 @@ namespace PC_Part_picker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<PartContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("PartContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
