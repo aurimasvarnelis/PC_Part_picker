@@ -22,6 +22,7 @@ namespace PC_Part_picker.Controllers
         // GET: Parts
         public async Task<IActionResult> Index()
         {
+            Console.WriteLine("PartController Index method activated");
             return View(await _context.Part.ToListAsync());
         }
 
