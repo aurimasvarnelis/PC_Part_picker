@@ -18,13 +18,13 @@ namespace PC_Part_picker.Models
                     DbContextOptions<PartContext>>()))
             {
                 // Look for any parts.
-                if (context.Part.Any())
+                if (context.Cpu.Any())
                 {
                     return;   // DB has been seeded
                 }
 
-                context.Part.AddRange(
-                    new Part
+                context.Cpu.AddRange(
+                    new CPU
                     {
                         Name = "Ryzen 3600X",
                         Model = "Ryzen",
@@ -32,10 +32,44 @@ namespace PC_Part_picker.Models
                         Rating = 7.99,
                         Price = 560,
                         Manufacturer = "AMD",
-                        Color = "Black"
+                        Color = "Black",
+                        Cores = 16,
+                        Frequency = "3.54Mhz",
+                        Series = "12",
+                        Consumption = 350
                     },
 
-                    new Part
+                    new CPU
+                    {
+                        Name = "Ryzen 5500",
+                        Model = "Ryzen",
+                        Description = "AMD CPU blah bla",
+                        Rating = 9.99,
+                        Price = 850,
+                        Manufacturer = "AMD",
+                        Color = "Black",
+                        Cores = 16,
+                        Frequency = "3.54Mhz",
+                        Series = "12",
+                        Consumption = 350
+                    },
+
+                    new CPU
+                    {
+                        Name = "Ryzen 5700XT",
+                        Model = "Ryzen",
+                        Description = "AMD CPU blah bla",
+                        Rating = 8.9,
+                        Price = 1200,
+                        Manufacturer = "AMD",
+                        Color = "Black",
+                        Cores = 16,
+                        Frequency = "3.54Mhz",
+                        Series = "12",
+                        Consumption = 400
+                    },
+
+                    new CPU
                     {
                         Name = "Ryzen 3600X",
                         Model = "Ryzen",
@@ -43,21 +77,48 @@ namespace PC_Part_picker.Models
                         Rating = 7.99,
                         Price = 560,
                         Manufacturer = "AMD",
+                        Color = "Black",
+                        Cores = 12,
+                        Frequency = "3.54Mhz",
+                        Series = "13",
+                        Consumption = 290
+                    }
+                );
+                context.Gpu.AddRange(
+                    new GPU
+                    {
+                        Name = "GTX 1660",
+                        Model = "GeForce",
+                        Description = "GEFROCE POG",
+                        Rating = 7.99,
+                        Price = 560,
+                        Manufacturer = "NVIDIA",
                         Color = "Black"
                     },
 
-                    new Part
+                    new GPU
                     {
                         Name = "Ryzen 3600X",
                         Model = "Ryzen",
                         Description = "AMD CPU blah bla",
                         Rating = 7.99,
                         Price = 560,
-                        Manufacturer = "AMD",
+                        Manufacturer = "NVIDIA",
                         Color = "Black"
                     },
 
-                    new Part
+                    new GPU
+                    {
+                        Name = "Ryzen 3600X",
+                        Model = "Ryzen",
+                        Description = "AMD CPU blah bla",
+                        Rating = 7.99,
+                        Price = 560,
+                        Manufacturer = "NVIDIA",
+                        Color = "Black"
+                    },
+
+                    new GPU
                     {
                         Name = "Ryzen 3600X",
                         Model = "Ryzen",
