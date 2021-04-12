@@ -19,6 +19,7 @@ namespace PC_Part_picker.Data
 
         public DbSet<CPU> Cpu { get; set; }
         public DbSet<GPU> Gpu { get; set; }
+        public DbSet<GPU> Mb { get; set; }
         //public DbSet<Part> Part { get; set; }
 
         //public DbSet<PartModel> PartModel { get; set; }

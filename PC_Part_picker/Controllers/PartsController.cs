@@ -89,6 +89,23 @@ namespace PC_Part_picker.Controllers
             return View(cpu);
         }
 
+        public async Task<IActionResult> _DetailsGPU(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gpu = await _context.Gpu
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (gpu == null)
+            {
+                return NotFound();
+            }
+
+            return View(gpu);
+        }
+
         // GET: Parts/Create
         public async Task<IActionResult> Create()
         {
@@ -247,6 +264,53 @@ namespace PC_Part_picker.Controllers
             return View(cpu);
         }
 
+        public async Task<IActionResult> _EditGPU(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gpu = await _context.Gpu.FindAsync(id);
+            if (gpu == null)
+            {
+                return NotFound();
+            }
+            return View(gpu);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> _EditGPU(int id, [Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color,Memory,Frequency,MemoryType,Consumption")] GPU gpu)
+        {
+            if (id != gpu.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(gpu);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CPUExists(gpu.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(gpu);
+        }
+
         // GET: Parts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -282,6 +346,23 @@ namespace PC_Part_picker.Controllers
             return View(cpu);
         }
 
+        public async Task<IActionResult> _DeleteGPU(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gpu = await _context.Gpu
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (gpu == null)
+            {
+                return NotFound();
+            }
+
+            return View(gpu);
+        }
+
         // POST: Parts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -303,6 +384,16 @@ namespace PC_Part_picker.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost, ActionName("_DeleteGPU")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> _DeleteConfirmedGPU(int id)
+        {
+            var gpu = await _context.Gpu.FindAsync(id);
+            _context.Gpu.Remove(gpu);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool PartExists(int id)
         {
             return _context.Cpu.Any(e => e.Id == id);
@@ -311,6 +402,10 @@ namespace PC_Part_picker.Controllers
         private bool CPUExists(int id)
         {
             return _context.Cpu.Any(e => e.Id == id);
+        }
+        private bool GPUExists(int id)
+        {
+            return _context.Gpu.Any(e => e.Id == id);
         }
     }
 }

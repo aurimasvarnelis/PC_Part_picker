@@ -18,6 +18,18 @@ namespace PC_Part_picker.Models
 
     }
 
+    public class SocketCPU
+    {
+        public string Socket { get; set; }
+    }
+
+    public class Dimensions
+    {
+        public string Length { get; set; }
+        public string Width { get; set; }
+        public string Height { get; set; }
+    }
+
 
     public class CPU : Part
     {
@@ -35,6 +47,59 @@ namespace PC_Part_picker.Models
         public int Consumption { get; set; }
     }
 
+    public class Motherboard : Part
+    {
+        public string ProccessorSocket { get; set; }
+        public int MemorySocket { get; set; }
+        public string MemoryType { get; set; }
+        public string EnergyConsumption { get; set; }
+        public SocketCPU Socket { get; set; }
+
+    }
+
+    public class RAM : Part
+    {
+        public string Type { get; set; }
+        public string Frequency { get; set; }
+        public string ModuleCount { get; set; }
+        public string MemorySize { get; set; }
+    }
+
+    public class Cooler : Part
+    {
+        public string Purpose { get; set; }
+        public string SoundLevel { get; set; }
+        public string Speed { get; set; }
+        public string RadiatorSize { get; set; }
+        public int EnergyEfficiency { get; set; }
+        public SocketCPU Socket { get; set; }
+    }
+
+    public class PSU : Part
+    {
+        public string Type { get; set; }
+        public string Power { get; set; }
+        public string SoundLevel { get; set; }
+        public string Efficiency { get; set; }
+        public Dimensions Dimensions { get; set; }
+    }
+
+    public class Storage : Part
+    {
+        public string Type { get; set; }
+        public string Capacity { get; set; }
+        public string Connector { get; set; }
+        public string Speed { get; set; }
+
+    }
+
+    public class Case : Part
+    {
+        public string Type { get; set; }
+        public string SizeFormat { get; set; }
+        public Dimensions Dimensions { get; set; }
+    }
+
     /*public class RAM : Part
     {
         public string Type { get; set; }
@@ -48,7 +113,7 @@ namespace PC_Part_picker.Models
         //public int Id { get; set; }
         public IEnumerable<CPU> CPU { get; set; }
         public IEnumerable<GPU> GPU { get; set; }
+        public IEnumerable<GPU> MB { get; set; }
     }
-
 
 }
