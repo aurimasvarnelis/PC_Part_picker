@@ -13,9 +13,9 @@ namespace PC_Part_picker.Controllers
 {
     public class PartsController : Controller
     {
-        private readonly PartContext _context;
+        private readonly PartPickerContext _context;
 
-        public PartsController(PartContext context)
+        public PartsController(PartPickerContext context)
         {
             _context = context;
         }

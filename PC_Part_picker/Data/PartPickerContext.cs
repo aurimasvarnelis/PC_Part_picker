@@ -10,9 +10,9 @@ using PC_Part_picker.Models;
 
 namespace PC_Part_picker.Data
 {
-    public class PartContext : DbContext
+    public class PartPickerContext : DbContext
     {
-        public PartContext(DbContextOptions<PartContext> options)
+        public PartPickerContext(DbContextOptions<PartPickerContext> options)
             : base(options)
         {
         }
@@ -20,6 +20,9 @@ namespace PC_Part_picker.Data
         public DbSet<CPU> Cpu { get; set; }
         public DbSet<GPU> Gpu { get; set; }
         public DbSet<GPU> Mb { get; set; }
+
+        public DbSet<Build> Build { get; set; }
+
         //public DbSet<Part> Part { get; set; }
 
         //public DbSet<PartModel> PartModel { get; set; }

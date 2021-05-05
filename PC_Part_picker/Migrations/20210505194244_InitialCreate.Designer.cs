@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PC_Part_picker.Data;
 
 namespace PC_Part_picker.Migrations
 {
-    [DbContext(typeof(PartContext))]
-    partial class PartContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PartPickerContext))]
+    [Migration("20210505194244_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,26 +21,54 @@ namespace PC_Part_picker.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PC_Part_picker.Models.CPU", b =>
+            modelBuilder.Entity("PC_Part_picker.Models.Build", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Color")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Consumption")
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Publication")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<string>("RatingCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Build");
+                });
+
+            modelBuilder.Entity("PC_Part_picker.Models.Part", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("BuildId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Cores")
-                        .HasColumnType("int");
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Frequency")
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Manufacturer")
@@ -56,34 +86,44 @@ namespace PC_Part_picker.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.Property<string>("Series")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("CPU");
+                    b.HasIndex("BuildId");
+
+                    b.ToTable("Part");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Part");
                 });
 
-            modelBuilder.Entity("PC_Part_picker.Models.GPU", b =>
+            modelBuilder.Entity("PC_Part_picker.Models.CPU", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasBaseType("PC_Part_picker.Models.Part");
 
                     b.Property<int>("Consumption")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Cores")
+                        .HasColumnType("int");
 
                     b.Property<string>("Frequency")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Manufacturer")
+                    b.Property<string>("Series")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("CPU");
+                });
+
+            modelBuilder.Entity("PC_Part_picker.Models.GPU", b =>
+                {
+                    b.HasBaseType("PC_Part_picker.Models.Part");
+
+                    b.Property<int>("Consumption")
+                        .HasColumnName("GPU_Consumption")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Frequency")
+                        .HasColumnName("GPU_Frequency")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Memory")
@@ -92,54 +132,14 @@ namespace PC_Part_picker.Migrations
                     b.Property<string>("MemoryType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GPU");
+                    b.HasDiscriminator().HasValue("GPU");
                 });
 
-            modelBuilder.Entity("PC_Part_picker.Models.PartModel", b =>
+            modelBuilder.Entity("PC_Part_picker.Models.Part", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CPUId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GPUId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CPUId");
-
-                    b.HasIndex("GPUId");
-
-                    b.ToTable("PartModel");
-                });
-
-            modelBuilder.Entity("PC_Part_picker.Models.PartModel", b =>
-                {
-                    b.HasOne("PC_Part_picker.Models.CPU", "CPU")
-                        .WithMany()
-                        .HasForeignKey("CPUId");
-
-                    b.HasOne("PC_Part_picker.Models.GPU", "GPU")
-                        .WithMany()
-                        .HasForeignKey("GPUId");
+                    b.HasOne("PC_Part_picker.Models.Build", null)
+                        .WithMany("Parts")
+                        .HasForeignKey("BuildId");
                 });
 #pragma warning restore 612, 618
         }

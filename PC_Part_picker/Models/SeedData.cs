@@ -13,9 +13,9 @@ namespace PC_Part_picker.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new PartContext(
+            using (var context = new PartPickerContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<PartContext>>()))
+                    DbContextOptions<PartPickerContext>>()))
             {
                 // Look for any parts.
                 if (context.Cpu.Any())
