@@ -407,5 +407,6 @@ namespace PC_Part_picker.Controllers
         {
             return _context.Gpu.Any(e => e.Id == id);
         }
+
     }
 }

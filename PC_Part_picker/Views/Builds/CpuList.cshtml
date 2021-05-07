@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PC_Part_picker.Models.CPU>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Frequency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Series)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consumption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Frequency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Series)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consumption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                <a asp-action="AddCpu" asp-route-id="@item.Id">Add</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

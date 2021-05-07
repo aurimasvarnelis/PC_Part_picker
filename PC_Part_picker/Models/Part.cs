@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PC_Part_picker.Models
 {
     public abstract class Part
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Model { get; set; }

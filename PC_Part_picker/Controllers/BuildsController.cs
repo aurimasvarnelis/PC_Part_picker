@@ -24,6 +24,14 @@ namespace PC_Part_picker.Controllers
         {
             return View(await _context.Build.ToListAsync());
         }
+        
+
+        public IActionResult CreateBuildPage()
+        {
+            return View("CreateBuild");
+        }
+
+
 
         // GET: Builds/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -148,6 +156,16 @@ namespace PC_Part_picker.Controllers
         private bool BuildExists(int id)
         {
             return _context.Build.Any(e => e.Id == id);
+        }
+
+        public IActionResult CpuList()
+        {
+            return View(_context.Cpu.ToList());
+        }
+
+        public IActionResult AddCpu()
+        {
+            return View(_context.Cpu.ToList());
         }
     }
 }
