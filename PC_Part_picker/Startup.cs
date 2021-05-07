@@ -28,8 +28,9 @@ namespace PC_Part_picker
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<PartContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("PartContext")));
+            services.AddDbContext<PartPickerContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("PartPickerContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
