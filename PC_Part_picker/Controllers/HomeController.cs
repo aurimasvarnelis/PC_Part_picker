@@ -30,6 +30,7 @@ namespace PC_Part_picker.Controllers
         
         public IActionResult PartListPage()
         {
+            Console.WriteLine("HomeController PartListPage method activated");
             return View();
         }
 
