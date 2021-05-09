@@ -24,7 +24,15 @@ namespace PC_Part_picker.Controllers
         {
             return View(await _context.Build.ToListAsync());
         }
-        
+
+        public async Task<IActionResult> AllBuildsPage()
+        {
+            return View(await _context.Build.ToListAsync());
+        }
+        public async Task<IActionResult> CompareBuildsPage()
+        {
+            return View(await _context.Build.ToListAsync());
+        }
 
         public IActionResult CreateBuildPage()
         {
