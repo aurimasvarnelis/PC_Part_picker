@@ -129,7 +129,27 @@ namespace PC_Part_picker.Models
                         Color = "Black"
                     }
                 );
-                context.SaveChanges();
+
+                context.Build.AddRange(
+                    new Build
+                    {
+                        Name = "Mano buildas",
+                        Rating = 9.99,
+                        RatingCount = "Rating count",
+                        Price = 560,
+                        Publication = true,
+                        Status = "statusas",
+                        Cpu = null,
+                        Cooler = null,
+                        Motherboard = null,
+                        RAM = null,
+                        Storage = null,
+                        Gpu = null,
+                        Psu = null,
+                        Case = null
+                    }
+               );
+        context.SaveChanges();
             }
         }
     }
