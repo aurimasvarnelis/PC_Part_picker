@@ -1,0 +1,13 @@
+﻿@model IEnumerable<PC_Part_picker.Models.Build>
+
+@{
+    ViewData["Title"] = "All builds";
+}
+
+<h1>All builds</h1>
+<p>
+    <a asp-action="CompareBuildsPage">Compare</a>
+</p>
+<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-cpu-tab">
+    @Html.Partial("_AllBuilds", Model)
+</div>
