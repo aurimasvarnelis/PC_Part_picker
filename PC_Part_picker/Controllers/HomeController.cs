@@ -28,11 +28,11 @@ namespace PC_Part_picker.Controllers
             return View();
         }
         
-        public IActionResult PartListPage()
+        /*public IActionResult PartListPage()
         {
             Console.WriteLine("HomeController PartListPage method activated");
             return View();
-        }
+        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

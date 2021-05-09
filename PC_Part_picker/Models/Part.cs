@@ -10,7 +10,6 @@ namespace PC_Part_picker.Models
 {
     public abstract class Part
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Model { get; set; }
@@ -24,11 +23,13 @@ namespace PC_Part_picker.Models
 
     public class SocketCPU
     {
+        public int Id { get; set; }
         public string Socket { get; set; }
     }
 
     public class Dimensions
     {
+        public int Id { get; set; }
         public string Length { get; set; }
         public string Width { get; set; }
         public string Height { get; set; }
@@ -112,12 +113,6 @@ namespace PC_Part_picker.Models
         public string MemoryStorage { get; set; }
     }*/
 
-    public class PartViewModel
-    {
-        //public int Id { get; set; }
-        public IEnumerable<CPU> CPU { get; set; }
-        public IEnumerable<GPU> GPU { get; set; }
-        public IEnumerable<GPU> MB { get; set; }
-    }
+    
 
 }

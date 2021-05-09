@@ -163,9 +163,14 @@ namespace PC_Part_picker.Controllers
             return View(_context.Cpu.ToList());
         }
 
-        public IActionResult AddCpu()
+        public IActionResult AddCpu(int? id)
         {
-            return View(_context.Cpu.ToList());
+            //var part =  _context.Cpu
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
+            var cpu = _context.Cpu.Find(id);
+
+            return View("CreateBuild", cpu);
         }
     }
 }
