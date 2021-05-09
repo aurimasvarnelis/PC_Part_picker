@@ -14,6 +14,13 @@ namespace PC_Part_picker.Models
         public double Price { get; set; }
         public bool Publication { get; set; }
         public string Status { get; set; }
-        public ICollection<Part> Parts { get; set; }
+        public CPU Cpu { get; set; }
+        public Cooler Cooler { get; set; }
+        public Motherboard Motherboard { get; set; }
+        public RAM RAM { get; set; }
+        public Storage Storage { get; set; }
+        public GPU Gpu { get; set; }
+        public PSU Psu { get; set; }
+        public Case Case { get; set; }
     }
 }
