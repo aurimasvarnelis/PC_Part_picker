@@ -1,20 +1,23 @@
-﻿@model IEnumerable<PC_Part_picker.Models.CPU>
+﻿@model IEnumerable<PC_Part_picker.Models.Cooler>
 
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cores)
+                @Html.DisplayNameFor(model => model.Purpose)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Frequency)
+                @Html.DisplayNameFor(model => model.SoundLevel)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Series)
+                @Html.DisplayNameFor(model => model.Speed)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Consumption)
+                @Html.DisplayNameFor(model => model.RadiatorSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnergyEfficiency)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -44,16 +47,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cores)
+                @Html.DisplayFor(modelItem => item.Purpose)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Frequency)
+                @Html.DisplayFor(modelItem => item.SoundLevel)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Series)
+                @Html.DisplayFor(modelItem => item.Speed)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Consumption)
+                @Html.DisplayFor(modelItem => item.RadiatorSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnergyEfficiency)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

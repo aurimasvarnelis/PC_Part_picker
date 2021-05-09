@@ -23,6 +23,10 @@ namespace PC_Part_picker.Data
 
         public DbSet<Build> Build { get; set; }
 
+        public DbSet<PC_Part_picker.Models.Cooler> Cooler { get; set; }
+
+        public DbSet<PC_Part_picker.Models.Motherboard> Motherboard { get; set; }
+
         //public DbSet<Part> Part { get; set; }
 
         //public DbSet<PartModel> PartModel { get; set; }

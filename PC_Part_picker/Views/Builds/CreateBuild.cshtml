@@ -24,11 +24,39 @@
     <tbody>
         <tr>
             <td>
-                <a asp-controller="Builds" asp-action="CpuList">CPU</a>
+                CPU
             </td>
             <td>
-      
-                <a asp-controller="Builds" asp-action="CpuList">Choose CPU</a>
+                @if (Model != null && Model.Cpu != null && !String.IsNullOrEmpty(Model.Cpu.Name))
+                {
+                    @Html.DisplayFor(model => Model.Cpu.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="CpuList">Choose CPU</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Cpu.Price)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                CPU Cooler
+            </td>
+            <td>
+                
+                @if (Model != null && Model.Cooler != null && !String.IsNullOrEmpty(Model.Cooler.Name))
+                {
+                    @Html.DisplayFor(model => Model.Cooler.Name)
+
+                }
+                else
+                {
+                <a asp-controller="Builds" asp-action="CoolerList">Choose CPU Cooler</a>
+                }
             </td>
             <td>
             </td>
@@ -36,21 +64,19 @@
 
         <tr>
             <td>
-                <a asp-controller="Builds" asp-action="CpuCoolerList">CPU Cooler</a>
+                Motherboard
             </td>
             <td>
-                <a asp-controller="Builds" asp-action="CpuCoolerList">Choose CPU Cooler</a>
-            </td>
-            <td>
-            </td>
-        </tr>
+                @if (Model != null && Model.Motherboard != null && !String.IsNullOrEmpty(Model.Motherboard.Name))
+                {
+                    @Html.DisplayFor(model => Model.Motherboard.Name)
 
-        <tr>
-            <td>
-                <a asp-controller="Builds" asp-action="MotherboardList">Motherboard</a>
-            </td>
-            <td>
+                }
+                else
+                {
                 <a asp-controller="Builds" asp-action="MotherboardList">Choose Motherboard</a>
+                }
+                
             </td>
             <td>
             </td>

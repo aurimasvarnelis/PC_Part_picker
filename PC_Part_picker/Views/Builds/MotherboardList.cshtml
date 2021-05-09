@@ -1,19 +1,19 @@
-﻿@model IEnumerable<PC_Part_picker.Models.CPU>
+﻿@model IEnumerable<PC_Part_picker.Models.Motherboard>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cores)
+                @Html.DisplayNameFor(model => model.ProccessorSocket)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Frequency)
+                @Html.DisplayNameFor(model => model.MemorySocket)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Series)
+                @Html.DisplayNameFor(model => model.MemoryType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Consumption)
+                @Html.DisplayNameFor(model => model.EnergyConsumption)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -43,16 +43,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cores)
+                @Html.DisplayFor(modelItem => item.ProccessorSocket)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Frequency)
+                @Html.DisplayFor(modelItem => item.MemorySocket)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Series)
+                @Html.DisplayFor(modelItem => item.MemoryType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Consumption)
+                @Html.DisplayFor(modelItem => item.EnergyConsumption)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -76,10 +76,9 @@
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                <a asp-action="AddCpu" asp-route-id="@item.Id">Add</a>
+                <a asp-action="AddMotherboard" asp-route-id="@item.Id">Add</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-
