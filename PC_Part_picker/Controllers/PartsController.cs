@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PC_Part_picker.Data;
 using PC_Part_picker.Models;
+using PC_Part_picker.ViewModels;
 
 
 namespace PC_Part_picker.Controllers

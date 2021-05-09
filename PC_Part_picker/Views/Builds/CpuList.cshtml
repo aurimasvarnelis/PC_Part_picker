@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<PC_Part_picker.Models.CPU>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -79,7 +76,7 @@
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                <a asp-action="AddCpu" asp-route-id="@item.Id">Add</a> |
+                <a asp-action="AddCpu" asp-route-id="@item.Id">Add</a>
             </td>
         </tr>
 }

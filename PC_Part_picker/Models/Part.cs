@@ -112,12 +112,6 @@ namespace PC_Part_picker.Models
         public string MemoryStorage { get; set; }
     }*/
 
-    public class PartViewModel
-    {
-        //public int Id { get; set; }
-        public IEnumerable<CPU> CPU { get; set; }
-        public IEnumerable<GPU> GPU { get; set; }
-        public IEnumerable<GPU> MB { get; set; }
-    }
+    
 
 }
