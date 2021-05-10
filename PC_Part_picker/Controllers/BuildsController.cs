@@ -171,14 +171,70 @@ namespace PC_Part_picker.Controllers
             return View(_context.Cpu.ToList());
         }
 
+        public IActionResult CoolerList()
+        {
+            return View(_context.Cooler.ToList());
+        }
+
+        public IActionResult MotherboardList()
+        {
+            return View(_context.Motherboard.ToList());
+        }
+
         public IActionResult AddCpu(int? id)
         {
             //var part =  _context.Cpu
             //    .FirstOrDefaultAsync(m => m.Id == id);
+            var buildId = GetUnfinishedBuild();
+            var build = _context.Build
+                .FirstOrDefault(m => m.Id == buildId);
 
             var cpu = _context.Cpu.Find(id);
 
-            return View("CreateBuild", cpu);
+            build.Cpu = cpu;          
+
+            return View("CreateBuild", build);
         }
+
+        public IActionResult AddCooler(int? id)
+        {
+            var buildId = GetUnfinishedBuild();
+            var build = _context.Build
+                .FirstOrDefault(m => m.Id == buildId);
+
+            var cooler = _context.Cooler.Find(id);
+
+            build.Cooler = cooler;
+
+            return View("CreateBuild", build);
+        }
+
+        public IActionResult AddMotherboard(int? id)
+        {
+            var buildId = GetUnfinishedBuild();
+            var build = _context.Build
+                .FirstOrDefault(m => m.Id == buildId);
+
+            var motherboard = _context.Motherboard.Find(id);
+
+            build.Motherboard = motherboard;
+
+            return View("CreateBuild", build);
+        }
+
+        public int GetUnfinishedBuild()
+        {
+            var build = _context.Build.Where(m => m.Status == "unfinished").FirstOrDefault();
+
+            if (build == null)
+            {
+                build = new Build();
+                build.Status = "unfinished";
+                _context.Add(build);
+                _context.SaveChanges();
+            }
+            return build.Id; 
+        }
+
     }
 }
