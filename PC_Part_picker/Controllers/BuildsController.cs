@@ -19,6 +19,20 @@ namespace PC_Part_picker.Controllers
             _context = context;
         }
 
+        // GET: Builds
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Build.ToListAsync());
+        }
+
+        public async Task<IActionResult> AllBuildsPage()
+        {
+            return View(await _context.Build.ToListAsync());
+        }
+        public async Task<IActionResult> CompareBuildsPage()
+        {
+            return View(await _context.Build.ToListAsync());
+        }
         public IActionResult CreateBuildPage()
         {      
             //var build = _context.Build
