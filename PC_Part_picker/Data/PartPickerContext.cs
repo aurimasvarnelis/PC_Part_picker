@@ -18,27 +18,14 @@ namespace PC_Part_picker.Data
         }
 
         public DbSet<CPU> Cpu { get; set; }
+        public DbSet<Cooler> Cooler { get; set; }
+        public DbSet<Motherboard> Motherboard { get; set; }
+        public DbSet<RAM> Ram { get; set; }
+        public DbSet<Storage> Storage { get; set; }
         public DbSet<GPU> Gpu { get; set; }
-        public DbSet<GPU> Mb { get; set; }
-
+        public DbSet<PSU> Psu { get; set; }
+        public DbSet<Case> Case { get; set; }
         public DbSet<Build> Build { get; set; }
-
-        public DbSet<PC_Part_picker.Models.Cooler> Cooler { get; set; }
-
-        public DbSet<PC_Part_picker.Models.Motherboard> Motherboard { get; set; }
-
-        //public DbSet<Part> Part { get; set; }
-
-        //public DbSet<PartModel> PartModel { get; set; }
-
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<CPU>().ToTable("CPU");
-            modelBuilder.Entity<GPU>().ToTable("GPU");
-            modelBuilder.Entity<Part>().ToTable("Part");
-
-        }*/
-
 
     }
 }

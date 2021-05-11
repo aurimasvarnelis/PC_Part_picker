@@ -1,0 +1,185 @@
+﻿@model PC_Part_picker.Models.Build
+
+
+@{
+    ViewData["Title"] = "Create build";
+}
+<h1>Create build</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Part
+            </th>
+            <th>
+                Selected
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                CPU
+            </td>
+            <td>
+                @if (Model != null && Model.Cpu != null)
+                {
+                    @Html.DisplayFor(model => Model.Cpu.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="CpuList">Choose CPU</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Cpu.Price)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                CPU Cooler
+            </td>
+            <td>
+
+                @if (Model != null && Model.Cooler != null)
+                {
+                    @Html.DisplayFor(model => Model.Cooler.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="CoolerList">Choose CPU Cooler</a>
+                }
+            </td>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Motherboard
+            </td>
+            <td>
+                @if (Model != null && Model.Motherboard != null)
+                {
+                    @Html.DisplayFor(model => Model.Motherboard.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="MotherboardList">Choose Motherboard</a>
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                RAM
+            </td>
+            <td>
+                @if (Model != null && Model.Ram != null)
+                {
+                    @Html.DisplayFor(model => Model.Ram.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="RamList">Choose RAM</a>
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Storage
+            </td>
+            <td>
+                @if (Model != null && Model.Storage != null)
+                {
+                    @Html.DisplayFor(model => Model.Storage.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="StorageList">Choose Storage</a>
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                GPU
+            </td>
+            <td>
+                @if (Model != null && Model.Gpu != null)
+                {
+                    @Html.DisplayFor(model => Model.Gpu.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="GpuList">Choose GPU</a>
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                PSU
+            </td>
+            <td>
+                @if (Model != null && Model.Psu != null)
+                {
+                    @Html.DisplayFor(model => Model.Psu.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="PsuList">Choose PSU</a>
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Case
+            </td>
+            <td>
+                @if (Model != null && Model.Case != null)
+                {
+                    @Html.DisplayFor(model => Model.Case.Name)
+
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="CaseList">Choose Case</a>
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>

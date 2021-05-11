@@ -19,138 +19,16 @@ namespace PC_Part_picker.Controllers
             _context = context;
         }
 
-        // GET: Builds
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Build.ToListAsync());
-        }
-        
-
         public IActionResult CreateBuildPage()
-        {
-            return View("CreateBuild");
-        }
+        {      
+            //var build = _context.Build
+            //    .FirstOrDefault(m => m.Id == buildId);
+            //var build = _context.Build.Find(buildId);
+            var build = GetUnfinishedBuild();
+            
 
-
-
-        // GET: Builds/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var build = await _context.Build
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (build == null)
-            {
-                return NotFound();
-            }
-
-            return View(build);
-        }
-
-        // GET: Builds/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Builds/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Rating,RatingCount,Price,Publication,Status")] Build build)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(build);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(build);
-        }
-
-        // GET: Builds/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var build = await _context.Build.FindAsync(id);
-            if (build == null)
-            {
-                return NotFound();
-            }
-            return View(build);
-        }
-
-        // POST: Builds/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Rating,RatingCount,Price,Publication,Status")] Build build)
-        {
-            if (id != build.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(build);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BuildExists(build.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(build);
-        }
-
-        // GET: Builds/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var build = await _context.Build
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (build == null)
-            {
-                return NotFound();
-            }
-
-            return View(build);
-        }
-
-        // POST: Builds/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var build = await _context.Build.FindAsync(id);
-            _context.Build.Remove(build);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //build.Cpu = _context.Cpu.First();
+            return View("CreateBuildPage", build);
         }
 
         private bool BuildExists(int id)
@@ -173,59 +51,137 @@ namespace PC_Part_picker.Controllers
             return View(_context.Motherboard.ToList());
         }
 
+        
         public IActionResult AddCpu(int? id)
         {
-            //var part =  _context.Cpu
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            var buildId = GetUnfinishedBuild();
-            var build = _context.Build
-                .FirstOrDefault(m => m.Id == buildId);
+            var build = GetUnfinishedBuild();
 
             var cpu = _context.Cpu.Find(id);
 
-            build.Cpu = cpu;          
-
-            return View("CreateBuild", build);
+            build.Cpu = cpu;
+            _context.Update(build);
+            _context.SaveChanges();
+            //return RedirectToAction(nameof(CreateBuildPage));
+            return View("CreateBuildPage", build);
         }
 
+        
         public IActionResult AddCooler(int? id)
         {
-            var buildId = GetUnfinishedBuild();
-            var build = _context.Build
-                .FirstOrDefault(m => m.Id == buildId);
+            var build = GetUnfinishedBuild();
 
             var cooler = _context.Cooler.Find(id);
 
             build.Cooler = cooler;
+            _context.Update(build);
+            _context.SaveChanges();
 
-            return View("CreateBuild", build);
+            //return RedirectToAction(nameof(CreateBuildPage), build);
+            return View("CreateBuildPage", build);
         }
 
+        
         public IActionResult AddMotherboard(int? id)
         {
-            var buildId = GetUnfinishedBuild();
-            var build = _context.Build
-                .FirstOrDefault(m => m.Id == buildId);
+            var build = GetUnfinishedBuild();
 
             var motherboard = _context.Motherboard.Find(id);
 
             build.Motherboard = motherboard;
+            _context.Update(build);
+            _context.SaveChanges();
 
-            return View("CreateBuild", build);
+            return RedirectToAction(nameof(CreateBuildPage));
+            //return View("CreateBuildPage", build);
         }
 
-        public int GetUnfinishedBuild()
+        public IActionResult AddRam(int? id)
         {
-            var build = _context.Build.Where(m => m.Status == "unfinished").FirstOrDefault();
+            var build = GetUnfinishedBuild();
 
+            var ram = _context.Ram.Find(id);
+
+            build.Ram = ram;
+            _context.Update(build);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        public IActionResult AddStorage(int? id)
+        {
+            var build = GetUnfinishedBuild();
+
+            var storage = _context.Storage.Find(id);
+
+            build.Storage = storage;
+            _context.Update(build);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        public IActionResult AddGpu(int? id)
+        {
+            var build = GetUnfinishedBuild();
+
+            var gpu = _context.Gpu.Find(id);
+
+            build.Gpu = gpu;
+            _context.Update(build);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        public IActionResult AddPsu(int? id)
+        {
+            var build = GetUnfinishedBuild();
+
+            var psu = _context.Psu.Find(id);
+
+            build.Psu = psu;
+            _context.Update(build);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        public IActionResult AddCase(int? id)
+        {
+            var build = GetUnfinishedBuild();
+
+            var pc_case = _context.Case.Find(id);
+
+            build.Case = pc_case;
+            _context.Update(build);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        public Build GetUnfinishedBuild()
+        {
+            var build = _context.Build
+                .Include(i => i.Cpu)
+                .Include(i => i.Cooler)
+                .Include(i => i.Motherboard)
+                .Include(i => i.Ram)
+                .Include(i => i.Storage)
+                .Include(i => i.Gpu)
+                .Include(i => i.Psu)
+                .Include(i => i.Case)
+                .Where(s => s.Status == "unfinished").FirstOrDefault();
+    
             if (build == null)
             {
                 build = new Build();
                 build.Status = "unfinished";
+
                 _context.Add(build);
                 _context.SaveChanges();
             }
-            return build.Id; 
+            return build; 
         }
 
     }

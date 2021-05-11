@@ -17,7 +17,7 @@ namespace PC_Part_picker.Models
         public CPU Cpu { get; set; }
         public Cooler Cooler { get; set; }
         public Motherboard Motherboard { get; set; }
-        public RAM RAM { get; set; }
+        public RAM Ram { get; set; }
         public Storage Storage { get; set; }
         public GPU Gpu { get; set; }
         public PSU Psu { get; set; }
