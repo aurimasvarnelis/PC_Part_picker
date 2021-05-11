@@ -142,7 +142,7 @@ namespace PC_Part_picker.Models
                         Cpu = null,
                         Cooler = null,
                         Motherboard = null,
-                        RAM = null,
+                        Ram = null,
                         Storage = null,
                         Gpu = null,
                         Psu = null,
