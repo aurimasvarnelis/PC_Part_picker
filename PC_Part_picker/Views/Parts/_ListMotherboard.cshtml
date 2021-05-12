@@ -1,34 +1,34 @@
 ﻿@model PC_Part_picker.ViewModels.PartViewModel
 
 <p>
-    <a asp-action="CreateGpu">Create New</a>
+    <a asp-action="CreateMotherboard">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Gpu.First().Name)
+                @Html.DisplayNameFor(model => model.Motherboard.First().Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gpu.First().Model)
+                @Html.DisplayNameFor(model => model.Motherboard.First().Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gpu.First().Rating)
+                @Html.DisplayNameFor(model => model.Motherboard.First().Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gpu.First().Price)
+                @Html.DisplayNameFor(model => model.Motherboard.First().Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gpu.First().Manufacturer)
+                @Html.DisplayNameFor(model => model.Motherboard.First().Manufacturer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gpu.First().Color)
+                @Html.DisplayNameFor(model => model.Motherboard.First().Color)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Gpu)
+        @foreach (var item in Model.Motherboard)
         {
             <tr>
                 <td>
@@ -50,9 +50,9 @@
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td>
-                    <a asp-action="EditGpu" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="DetailsGpu" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="DeleteGpu" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="EditMotherboard" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="DetailsMotherboard" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="DeleteMotherboard" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }

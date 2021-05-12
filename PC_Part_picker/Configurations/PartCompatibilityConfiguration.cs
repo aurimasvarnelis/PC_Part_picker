@@ -12,8 +12,8 @@ namespace PC_Part_picker.Configurations
     {
         public void Configure(EntityTypeBuilder<PartCompatibility> builder)
         {
-            builder.HasOne(pc => pc.Compatibility).WithMany(c => c.Parts);
-            builder.HasOne(pc => pc.Part).WithMany(p => p.Compatibilities);
+            //builder.HasOne(pc => pc.Compatibility).WithMany(c => c.Parts);
+            //builder.HasOne(pc => pc.Part).WithMany(p => p.Compatibilities);
         }
     }
 }

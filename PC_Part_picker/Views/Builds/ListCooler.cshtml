@@ -5,28 +5,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Purpose)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoundLevel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Speed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RadiatorSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnergyEfficiency)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rating)
@@ -47,28 +29,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Purpose)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoundLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Speed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RadiatorSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnergyEfficiency)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
@@ -83,7 +47,8 @@
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                <a asp-action="AddCooler" asp-route-id="@item.Id">Add</a>
+                <a asp-action="AddPart" asp-route-id="@item.Id" asp-route-partName="cooler">Add</a> |
+                <a asp-action="DetailsPart" asp-route-id="@item.Id" asp-route-partName="cooler">Details</a>
             </td>
         </tr>
 }

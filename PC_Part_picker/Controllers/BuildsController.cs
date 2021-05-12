@@ -29,19 +29,15 @@ namespace PC_Part_picker.Controllers
         {
             return View(await _context.Build.ToListAsync());
         }
+
         public async Task<IActionResult> CompareBuildsPage()
         {
             return View(await _context.Build.ToListAsync());
         }
+
         public IActionResult CreateBuildPage()
         {      
-            //var build = _context.Build
-            //    .FirstOrDefault(m => m.Id == buildId);
-            //var build = _context.Build.Find(buildId);
-            var build = GetUnfinishedBuild();
-            
-
-            //build.Cpu = _context.Cpu.First();
+            var build = GetUnfinishedBuild();;
             return View("CreateBuildPage", build);
         }
 
@@ -50,128 +46,130 @@ namespace PC_Part_picker.Controllers
             return _context.Build.Any(e => e.Id == id);
         }
 
-        public IActionResult CpuList()
+        public IActionResult ListPart(string partName)
         {
-            return View(_context.Cpu.ToList());
+            if (partName == "cpu")
+                return View("ListCpu",_context.Cpu.ToList());
+            else if (partName == "cooler")
+                return View("ListCooler", _context.Cooler.ToList());
+            else if (partName == "motherboard")
+                return View("ListMotherboard", _context.Motherboard.ToList());
+            else if (partName == "ram")
+                return View("ListRam", _context.Ram.ToList());
+            else if (partName == "storage")
+                return View("ListStorage", _context.Storage.ToList());
+            else if (partName == "gpu")
+                return View("ListGpu", _context.Gpu.ToList());
+            else if (partName == "psu")
+                return View("ListPsu", _context.Psu.ToList());
+            else if (partName == "case")
+                return View("ListCase", _context.Case.ToList());
+            return NotFound();
         }
 
-        public IActionResult CoolerList()
-        {
-            return View(_context.Cooler.ToList());
-        }
-
-        public IActionResult MotherboardList()
-        {
-            return View(_context.Motherboard.ToList());
-        }
-
-        
-        public IActionResult AddCpu(int? id)
+        public IActionResult AddPart(int? id, string partName)
         {
             var build = GetUnfinishedBuild();
 
-            var cpu = _context.Cpu.Find(id);
+            if (partName == "cpu")
+            {
+                var part = _context.Cpu.Find(id);
+                build.Cpu = part;
+            }
+            else if (partName == "cooler")
+            {
+                var part = _context.Cooler.Find(id);
+                build.Cooler = part;
+            }
+            else if (partName == "motherboard")
+            {
+                var part = _context.Motherboard.Find(id);
+                build.Motherboard = part;
+            }
+            else if (partName == "ram")
+            {
+                var part = _context.Ram.Find(id);
+                build.Ram = part;
+            }
+            else if (partName == "storage")
+            {
+                var part = _context.Storage.Find(id);
+                build.Storage = part;
+            }
+            else if (partName == "gpu")
+            {
+                var part = _context.Gpu.Find(id);
+                build.Gpu = part;
+            }
+            else if (partName == "psu")
+            {
+                var part = _context.Psu.Find(id);
+                build.Psu = part;
+            }
+            else if (partName == "case")
+            {
+                var part = _context.Case.Find(id);
+                build.Case = part;
+            }
 
-            build.Cpu = cpu;
-            _context.Update(build);
-            _context.SaveChanges();
-            //return RedirectToAction(nameof(CreateBuildPage));
-            return View("CreateBuildPage", build);
-        }
-
-        
-        public IActionResult AddCooler(int? id)
-        {
-            var build = GetUnfinishedBuild();
-
-            var cooler = _context.Cooler.Find(id);
-
-            build.Cooler = cooler;
-            _context.Update(build);
-            _context.SaveChanges();
-
-            //return RedirectToAction(nameof(CreateBuildPage), build);
-            return View("CreateBuildPage", build);
-        }
-
-        
-        public IActionResult AddMotherboard(int? id)
-        {
-            var build = GetUnfinishedBuild();
-
-            var motherboard = _context.Motherboard.Find(id);
-
-            build.Motherboard = motherboard;
-            _context.Update(build);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(CreateBuildPage));
-            //return View("CreateBuildPage", build);
-        }
-
-        public IActionResult AddRam(int? id)
-        {
-            var build = GetUnfinishedBuild();
-
-            var ram = _context.Ram.Find(id);
-
-            build.Ram = ram;
-            _context.Update(build);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(CreateBuildPage));
-        }
-
-        public IActionResult AddStorage(int? id)
-        {
-            var build = GetUnfinishedBuild();
-
-            var storage = _context.Storage.Find(id);
-
-            build.Storage = storage;
             _context.Update(build);
             _context.SaveChanges();
 
             return RedirectToAction(nameof(CreateBuildPage));
         }
 
-        public IActionResult AddGpu(int? id)
+        public IActionResult DetailsPart(int? id, string partName)
         {
-            var build = GetUnfinishedBuild();
+            if (partName == "cpu")
+            {
+                var part = _context.Cpu
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsCpu", part);
+            }       
+            else if (partName == "cooler")
+            {
+                var part = _context.Cooler
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsCooler", part);
+            }
+            else if (partName == "motherboard")
+            {
+                var part = _context.Motherboard
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsMotherboard", part);
+            }
+            else if (partName == "ram")
+            {
+                var part = _context.Ram
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsRam", part);
+            }
+            else if (partName == "storage")
+            {
+                var part = _context.Storage
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsStorage", part);
+            }
+            else if (partName == "gpu")
+            {
+                var part = _context.Gpu
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsGpu", part);
+            }
+            else if (partName == "psu")
+            {
+                var part = _context.Psu
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsPsu", part);
+            }
+            else if (partName == "case")
+            {
+                var part = _context.Case
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsCase", part);
+            }
 
-            var gpu = _context.Gpu.Find(id);
-
-            build.Gpu = gpu;
-            _context.Update(build);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(CreateBuildPage));
-        }
-
-        public IActionResult AddPsu(int? id)
-        {
-            var build = GetUnfinishedBuild();
-
-            var psu = _context.Psu.Find(id);
-
-            build.Psu = psu;
-            _context.Update(build);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(CreateBuildPage));
-        }
-
-        public IActionResult AddCase(int? id)
-        {
-            var build = GetUnfinishedBuild();
-
-            var pc_case = _context.Case.Find(id);
-
-            build.Case = pc_case;
-            _context.Update(build);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(CreateBuildPage));
+            return NotFound();
         }
 
         public Build GetUnfinishedBuild()
@@ -185,7 +183,8 @@ namespace PC_Part_picker.Controllers
                 .Include(i => i.Gpu)
                 .Include(i => i.Psu)
                 .Include(i => i.Case)
-                .Where(s => s.Status == "unfinished").FirstOrDefault();
+                .Where(s => s.Status == "unfinished")
+                .FirstOrDefault();
     
             if (build == null)
             {
@@ -196,6 +195,42 @@ namespace PC_Part_picker.Controllers
                 _context.SaveChanges();
             }
             return build; 
+        }
+
+        public IActionResult DeletePart(int? id, string partName)
+        {
+            var build = _context.Build
+                .Include(i => i.Cpu)
+                .Include(i => i.Cooler)
+                .Include(i => i.Motherboard)
+                .Include(i => i.Ram)
+                .Include(i => i.Storage)
+                .Include(i => i.Gpu)
+                .Include(i => i.Psu)
+                .Include(i => i.Case)
+                .FirstOrDefault(m => m.Id == id);
+
+            if(partName == "cpu")
+                build.Cpu = null;
+            else if (partName == "cooler")
+                build.Cooler = null;
+            else if (partName == "motherboard")
+                build.Motherboard = null;
+            else if (partName == "ram")
+                build.Ram = null;
+            else if (partName == "storage")
+                build.Storage = null;
+            else if (partName == "gpu")
+                build.Gpu = null;
+            else if (partName == "psu")
+                build.Psu = null;
+            else if (partName == "case")
+                build.Case = null;
+
+            _context.Update(build);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(CreateBuildPage));
         }
 
     }

@@ -34,10 +34,10 @@ namespace PC_Part_picker.Data
              // modelBuilder.Entity<CPU>().ToTable("CPU");
              // modelBuilder.Entity<GPU>().ToTable("GPU");
              // modelBuilder.Entity<Part>().ToTable("Part");
-             modelBuilder.ApplyConfiguration(new CompatibilityConfiguration());
+             /*modelBuilder.ApplyConfiguration(new CompatibilityConfiguration());
              modelBuilder.ApplyConfiguration(new PartsConfiguration());
              modelBuilder.ApplyConfiguration(new PartCompatibilityConfiguration());
-             modelBuilder.Entity<PartCompatibility>().HasKey(pc => new {pc.PartId, pc.CompatibilityId});
+             modelBuilder.Entity<PartCompatibility>().HasKey(pc => new {pc.PartId, pc.CompatibilityId});*/
          }
 
 

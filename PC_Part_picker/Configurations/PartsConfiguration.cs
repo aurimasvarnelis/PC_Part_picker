@@ -12,7 +12,7 @@ namespace PC_Part_picker.Configurations
     {
         public void Configure(EntityTypeBuilder<Part> builder)
         {
-            builder.HasMany(p => p.Compatibilities).WithOne(c => c.Part);
+            //builder.HasMany(p => p.Compatibilities).WithOne(c => c.Part);
         }
     }
 }

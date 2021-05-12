@@ -24,35 +24,63 @@ namespace PC_Part_picker.Controllers
         // GET: Parts
         public IActionResult Index()
         {
-            /*CPU cpu = new List<CPU>()
-            {
-                Name = "ryzen"
-            };
-            GPU gpu = new GPU()
-            {
-                Name = "gefroce"
-            };
-            PartViewModel partViewModel = new PartViewModel()
-            {
-                CPU = cpu,
-                GPU = gpu
-
-            };*/
             PartViewModel partViewModel = new PartViewModel();
-            partViewModel.CPU = _context.Cpu.ToList();
-            partViewModel.GPU = _context.Gpu.ToList();
+            partViewModel.Cpu = _context.Cpu.ToList();
+            partViewModel.Cooler = _context.Cooler.ToList();
+            partViewModel.Motherboard = _context.Motherboard.ToList();
+            partViewModel.Ram = _context.Ram.ToList();
+            partViewModel.Storage = _context.Storage.ToList();
+            partViewModel.Gpu = _context.Gpu.ToList();
+            partViewModel.Psu = _context.Psu.ToList();
+            partViewModel.Case = _context.Case.ToList();
             return View(partViewModel);
         }
 
         [HttpGet]
-        public async Task<IActionResult> _ListCPU()
+        public IActionResult ListCpu()
         {
             return View("Index", _context.Cpu.ToList());
         }
+
         [HttpGet]
-        public async Task<IActionResult> _ListGPU()
+        public IActionResult ListCooler()
+        {
+            return View("Index", _context.Cooler.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult ListMotherboard()
+        {
+            return View("Index", _context.Motherboard.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult ListRam()
+        {
+            return View("Index", _context.Ram.ToList());
+        }
+
+        public IActionResult ListStorage()
+        {
+            return View("Index", _context.Storage.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult ListGpu()
         {
             return View("Index", _context.Gpu.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult ListPsu()
+        {
+            return View("Index", _context.Psu.ToList());
+        }
+
+        [HttpGet]
+        public IActionResult ListCase()
+        {
+            return View("Index", _context.Case.ToList());
         }
 
         // GET: Parts/Details/5
