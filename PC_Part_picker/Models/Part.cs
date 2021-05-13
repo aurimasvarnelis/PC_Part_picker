@@ -43,7 +43,6 @@ namespace PC_Part_picker.Models
         PicoITX
     }
 
-
     public class CPU : Part
     {
         public int Cores { get; set; }
@@ -52,21 +51,19 @@ namespace PC_Part_picker.Models
         public string Consumption { get; set; }
     }
 
-    public class GPU : Part
+    public class Cooler : Part
     {
-        public string Memory { get; set; }
-        public string Frequency { get; set; }
-        public string MemoryType { get; set; }
-        public string Consumption { get; set; }
+        public string SoundLevel { get; set; }
+        public string Speed { get; set; }
+        public string RadiatorSize { get; set; }
+        public SocketCPU Socket { get; set; }
     }
-
     public class Motherboard : Part
     {
         public int MemorySlots { get; set; }
         public string MemoryType { get; set; }
         public FormFactor FormFactor { get; set; }
         public SocketCPU Socket { get; set; }
-
     }
 
     public class RAM : Part
@@ -75,14 +72,22 @@ namespace PC_Part_picker.Models
         public string Frequency { get; set; }
         public string ModuleCount { get; set; }
         public string MemorySize { get; set; }
+    } 
+
+    public class Storage : Part
+    {
+        public string Type { get; set; }
+        public string Capacity { get; set; }
+        public string Connector { get; set; }
+        public string Cache { get; set; }
     }
 
-    public class Cooler : Part
+    public class GPU : Part
     {
-        public string SoundLevel { get; set; }
-        public string Speed { get; set; }
-        public string RadiatorSize { get; set; }
-        public SocketCPU Socket { get; set; }
+        public string Memory { get; set; }
+        public string Frequency { get; set; }
+        public string MemoryType { get; set; }
+        public string Consumption { get; set; }
     }
 
     public class PSU : Part
@@ -94,30 +99,11 @@ namespace PC_Part_picker.Models
         public Dimensions Dimensions { get; set; }
     }
 
-    public class Storage : Part
-    {
-        public string Type { get; set; }
-        public string Capacity { get; set; }
-        public string Connector { get; set; }
-        public string Cache { get; set; }
-
-    }
-
     public class Case : Part
     {
         public string Type { get; set; }
         public FormFactor FormFactor { get; set; }
         public Dimensions Dimensions { get; set; }
     }
-
-    /*public class RAM : Part
-    {
-        public string Type { get; set; }
-        public string Frequency { get; set; }
-        public int ModuleCount { get; set; }
-        public string MemoryStorage { get; set; }
-    }*/
-
-    
 
 }

@@ -1,7 +1,7 @@
 ﻿@model PC_Part_picker.ViewModels.PartViewModel
 
 <p>
-    <a asp-action="CreateCpu">Create New</a>
+    <a asp-action="CreatePart" asp-route-partName="cpu">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -50,9 +50,9 @@
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td>
-                    <a asp-action="EditCpu" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="DetailsCpu" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="DeleteCpu" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="EditPart" asp-route-id="@item.Id" asp-route-partName="cpu">Edit</a> |
+                    <a asp-action="DetailsPart" asp-route-id="@item.Id" asp-route-partName="cpu">Details</a> |
+                    <a asp-action="DeletePart" asp-route-id="@item.Id" asp-route-partName="cpu">Delete</a>
                 </td>
             </tr>
         }

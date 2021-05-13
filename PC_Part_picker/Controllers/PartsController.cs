@@ -21,8 +21,7 @@ namespace PC_Part_picker.Controllers
             _context = context;
         }
 
-        // GET: Parts
-        public IActionResult Index()
+        public IActionResult PartListPage()
         {
             PartViewModel partViewModel = new PartViewModel();
             partViewModel.Cpu = _context.Cpu.ToList();
@@ -36,405 +35,290 @@ namespace PC_Part_picker.Controllers
             return View(partViewModel);
         }
 
-        [HttpGet]
-        public IActionResult ListCpu()
+        public IActionResult ListPart(string partName)
         {
-            return View("Index", _context.Cpu.ToList());
+            if (partName == "cpu")
+                return View("PartListPage", _context.Cpu.ToList());
+            else if (partName == "cooler")
+                return View("PartListPage", _context.Cooler.ToList());
+            else if (partName == "motherboard")
+                return View("PartListPage", _context.Motherboard.ToList());
+            else if (partName == "ram")
+                return View("PartListPage", _context.Ram.ToList());
+            else if (partName == "storage")
+                return View("PartListPage", _context.Storage.ToList());
+            else if (partName == "gpu")
+                return View("PartListPage", _context.Gpu.ToList());
+            else if (partName == "psu")
+                return View("PartListPage", _context.Psu.ToList());
+            else if (partName == "case")
+                return View("PartListPage", _context.Case.ToList());
+            return NotFound();
         }
 
-        [HttpGet]
-        public IActionResult ListCooler()
+        public IActionResult DetailsPart(int? id, string partName)
         {
-            return View("Index", _context.Cooler.ToList());
-        }
-
-        [HttpGet]
-        public IActionResult ListMotherboard()
-        {
-            return View("Index", _context.Motherboard.ToList());
-        }
-
-        [HttpGet]
-        public IActionResult ListRam()
-        {
-            return View("Index", _context.Ram.ToList());
-        }
-
-        public IActionResult ListStorage()
-        {
-            return View("Index", _context.Storage.ToList());
-        }
-
-        [HttpGet]
-        public IActionResult ListGpu()
-        {
-            return View("Index", _context.Gpu.ToList());
-        }
-
-        [HttpGet]
-        public IActionResult ListPsu()
-        {
-            return View("Index", _context.Psu.ToList());
-        }
-
-        [HttpGet]
-        public IActionResult ListCase()
-        {
-            return View("Index", _context.Case.ToList());
-        }
-
-        // GET: Parts/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            if (partName == "cpu")
             {
-                return NotFound();
+                var part = _context.Cpu
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsCpu", part);
             }
-
-            var part = await _context.Cpu
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (part == null)
+            else if (partName == "cooler")
             {
-                return NotFound();
+                var part = _context.Cooler
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsCooler", part);
             }
-
-            return View(part);
-        }
-
-        public async Task<IActionResult> _DetailsCPU(int? id)
-        {
-            if (id == null)
+            else if (partName == "motherboard")
             {
-                return NotFound();
+                var part = _context.Motherboard
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsMotherboard", part);
             }
-
-            var cpu = await _context.Cpu
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cpu == null)
+            else if (partName == "ram")
             {
-                return NotFound();
+                var part = _context.Ram
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsRam", part);
             }
-
-            return View(cpu);
-        }
-
-        public async Task<IActionResult> _DetailsGPU(int? id)
-        {
-            if (id == null)
+            else if (partName == "storage")
             {
-                return NotFound();
+                var part = _context.Storage
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsStorage", part);
             }
-
-            var gpu = await _context.Gpu
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (gpu == null)
+            else if (partName == "gpu")
             {
-                return NotFound();
+                var part = _context.Gpu
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsGpu", part);
             }
-
-            return View(gpu);
+            else if (partName == "psu")
+            {
+                var part = _context.Psu
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsPsu", part);
+            }
+            else if (partName == "case")
+            {
+                var part = _context.Case
+                    .FirstOrDefault(m => m.Id == id);
+                return View("DetailsCase", part);
+            }
+            return NotFound();
         }
 
         // GET: Parts/Create
-        public async Task<IActionResult> Create()
+        public IActionResult CreatePart(string partName)
         {
-            return View();
-        }
-
-        // POST: Parts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color")] Part part)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(part);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(part);
-        }
-
-        // GET: Parts/Create
-        public async Task<IActionResult> _CreateCPU()
-        {
-            return PartialView("_CreateCPU");
+            if (partName == "cpu")
+                return View("CreateCpu");
+            else if (partName == "cooler")
+                return View("CreateCooler");
+            else if (partName == "motherboard")
+                return View("CreateMotherboard");
+            else if (partName == "ram")
+                return View("CreateRam");
+            else if (partName == "storage")
+                return View("CreateStorage");
+            else if (partName == "gpu")
+                return View("CreateGpu");
+            else if (partName == "psu")
+                return View("CreatePsu");
+            else if (partName == "case")
+                return View("CreateCase");
+            return NotFound();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> _CreateCPU([Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color,Cores,Frequency,Series,Consumption")] CPU cpu)
+        public IActionResult CreateCPU([Bind("Id,Name,Model,Rating,Price,Manufacturer,Color,Cores,Frequency,Series,Consumption")] CPU cpu)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(cpu);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.SaveChanges();
+                return RedirectToAction(nameof(PartListPage));
             }
-            return PartialView(cpu);
-        }
-
-        // GET: Parts/Create
-        public IActionResult CreateGPU()
-        {
-            return View("_CreateGPU");
+            return View("CreateCpu", cpu);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> _CreateGPU([Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color,Memory,Frequency,MemoryType,Consumption")] GPU gpu)
+        public IActionResult CreateGPU([Bind("Id,Name,Model,Rating,Price,Manufacturer,Color,Memory,Frequency,MemoryType,Consumption")] GPU gpu)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(gpu);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.SaveChanges();
+                return RedirectToAction(nameof(PartListPage));
             }
-            return View(gpu);
+            return View("CreateGpu", gpu);
         }
 
-        // GET: Parts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult EditPart(int? id, string partName)
         {
-            if (id == null)
+            if (partName == "cpu")
             {
-                return NotFound();
+                var part = _context.Cpu.Find(id);
+                return View("EditCpu", part);
             }
-
-            var part = await _context.Cpu.FindAsync(id);
-            if (part == null)
+            else if (partName == "cooler")
             {
-                return NotFound();
+                var part = _context.Cooler.Find(id);
+                return View("EditCooler", part);
             }
-            return View(part);
+            else if (partName == "motherboard")
+            {
+                var part = _context.Motherboard.Find(id);
+                return View("EditMotherboard", part);
+            }
+            else if (partName == "ram")
+            {
+                var part = _context.Ram.Find(id);
+                return View("EditRam", part);
+            }
+            else if (partName == "storage")
+            {
+                var part = _context.Storage.Find(id);
+                return View("EditStorage", part);
+            }
+            else if (partName == "gpu")
+            {
+                var part = _context.Gpu.Find(id);
+                return View("EditGpu", part);
+            }
+            else if (partName == "psu")
+            {
+                var part = _context.Psu.Find(id);
+                return View("EditPsu", part);
+            }
+            else if (partName == "case")
+            {
+                var part = _context.Case.Find(id);
+                return View("EditCase", part);
+            }
+            return NotFound();
         }
 
-        // POST: Parts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color")] Part part)
+        public IActionResult EditCpu(int id, [Bind("Id,Name,Model,Rating,Price,Manufacturer,Color,Cores,Frequency,Series,Consumption")] CPU cpu)
         {
-            if (id != part.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(part);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CPUExists(part.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(part);
-        }
-
-        public async Task<IActionResult> _EditCPU(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cpu = await _context.Cpu.FindAsync(id);
-            if (cpu == null)
-            {
-                return NotFound();
+                _context.Update(cpu);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(PartListPage));
             }
             return View(cpu);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> _EditCPU(int id, [Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color,Cores,Frequency,Series,Consumption")] CPU cpu)
+        public IActionResult EditGpu(int id, [Bind("Id,Name,Model,Rating,Price,Manufacturer,Color,Memory,Frequency,MemoryType,Consumption")] GPU gpu)
         {
-            if (id != cpu.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(cpu);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CPUExists(cpu.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(cpu);
-        }
-
-        public async Task<IActionResult> _EditGPU(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var gpu = await _context.Gpu.FindAsync(id);
-            if (gpu == null)
-            {
-                return NotFound();
+                _context.Update(gpu);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(PartListPage));
             }
             return View(gpu);
         }
 
-        [HttpPost]
+        public IActionResult DeletePart(int? id, string partName)
+        {
+            if (partName == "cpu")
+            {
+                var part = _context.Cpu.Find(id);
+                return View("DeleteCpu", part);
+            }
+            else if (partName == "cooler")
+            {
+                var part = _context.Cooler.Find(id);
+                return View("DeleteCooler", part);
+            }
+            else if (partName == "motherboard")
+            {
+                var part = _context.Motherboard.Find(id);
+                return View("DeleteMotherboard", part);
+            }
+            else if (partName == "ram")
+            {
+                var part = _context.Ram.Find(id);
+                return View("DeleteRam", part);
+            }
+            else if (partName == "storage")
+            {
+                var part = _context.Storage.Find(id);
+                return View("DeleteStorage", part);
+            }
+            else if (partName == "gpu")
+            {
+                var part = _context.Gpu.Find(id);
+                return View("DeleteGpu", part);
+            }
+            else if (partName == "psu")
+            {
+                var part = _context.Psu.Find(id);
+                return View("DeletePsu", part);
+            }
+            else if (partName == "case")
+            {
+                var part = _context.Case.Find(id);
+                return View("DeleteCase", part);
+            }
+            return NotFound();
+        }
+
+        [HttpPost, ActionName("DeletePart")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> _EditGPU(int id, [Bind("Id,Name,Model,Description,Rating,Price,Manufacturer,Color,Memory,Frequency,MemoryType,Consumption")] GPU gpu)
+        public IActionResult DeleteConfirmedPart(int id, string partName)
         {
-            if (id != gpu.Id)
+            if (partName == "cpu")
             {
-                return NotFound();
+                var part = _context.Cpu.Find(id);
+                _context.Cpu.Remove(part);
             }
-
-            if (ModelState.IsValid)
+            else if (partName == "cooler")
             {
-                try
-                {
-                    _context.Update(gpu);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CPUExists(gpu.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                var part = _context.Cooler.Find(id);
+                _context.Cooler.Remove(part);
             }
-            return View(gpu);
-        }
-
-        // GET: Parts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
+            else if (partName == "motherboard")
             {
-                return NotFound();
+                var part = _context.Motherboard.Find(id);
+                _context.Motherboard.Remove(part);
             }
-
-            var part = await _context.Cpu
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (part == null)
+            else if (partName == "ram")
             {
-                return NotFound();
+                var part = _context.Ram.Find(id);
+                _context.Ram.Remove(part);
             }
-
-            return View(part);
-        }
-
-        public async Task<IActionResult> _DeleteCPU(int? id)
-        {
-            if (id == null)
+            else if (partName == "storage")
             {
-                return NotFound();
+                var part = _context.Storage.Find(id);
+                _context.Storage.Remove(part);
             }
-
-            var cpu = await _context.Cpu
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cpu == null)
+            else if (partName == "gpu")
             {
-                return NotFound();
+                var part = _context.Gpu.Find(id);
+                _context.Gpu.Remove(part);
             }
-
-            return View(cpu);
-        }
-
-        public async Task<IActionResult> _DeleteGPU(int? id)
-        {
-            if (id == null)
+            else if (partName == "psu")
             {
-                return NotFound();
+                var part = _context.Psu.Find(id);
+                _context.Psu.Remove(part);
             }
-
-            var gpu = await _context.Gpu
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (gpu == null)
+            else if (partName == "case")
             {
-                return NotFound();
-            }
-
-            return View(gpu);
-        }
-
-        // POST: Parts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var part = await _context.Cpu.FindAsync(id);
-            _context.Cpu.Remove(part);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost, ActionName("_DeleteCPU")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> _DeleteConfirmedCPU(int id)
-        {
-            var cpu = await _context.Cpu.FindAsync(id);
-            _context.Cpu.Remove(cpu);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost, ActionName("_DeleteGPU")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> _DeleteConfirmedGPU(int id)
-        {
-            var gpu = await _context.Gpu.FindAsync(id);
-            _context.Gpu.Remove(gpu);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool PartExists(int id)
-        {
-            return _context.Cpu.Any(e => e.Id == id);
-        }
-
-        private bool CPUExists(int id)
-        {
-            return _context.Cpu.Any(e => e.Id == id);
-        }
-        private bool GPUExists(int id)
-        {
-            return _context.Gpu.Any(e => e.Id == id);
+                var part = _context.Case.Find(id);
+                _context.Case.Remove(part);
+            }          
+            _context.SaveChanges();
+            return RedirectToAction(nameof(PartListPage));
         }
 
     }
