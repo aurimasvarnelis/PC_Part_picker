@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PC_Part_picker.Data;
 using PC_Part_picker.Models;
+using System.Web;
 
 namespace PC_Part_picker.Controllers
 {
@@ -37,7 +38,7 @@ namespace PC_Part_picker.Controllers
 
         public IActionResult CreateBuildPage()
         {      
-            var build = GetUnfinishedBuild();;
+            var build = GetUnfinishedBuild();
             return View("CreateBuildPage", build);
         }
 
@@ -230,6 +231,35 @@ namespace PC_Part_picker.Controllers
             _context.Update(build);
             _context.SaveChanges();
 
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+
+
+        public IActionResult FinishBuild()
+        {
+            var build = GetUnfinishedBuild();
+            if(build.Cpu != null && build.Cooler != null && build.Motherboard != null && build.Ram != null 
+                && build.Storage != null && build.Gpu != null && build.Psu != null && build.Case != null)
+            {
+                build.Status = "finished";
+                build.Price = build.Cpu.Price +
+                    build.Cooler.Price +
+                    build.Motherboard.Price +
+                    build.Ram.Price +
+                    build.Storage.Price +
+                    build.Gpu.Price +
+                    build.Psu.Price +
+                    build.Case.Price;
+                _context.Update(build);
+                _context.SaveChanges();
+                TempData["Success"] = "Build was saved";
+            }
+            else
+            {
+                TempData["Error"] = "Not all parts selected";   
+            }
+            
             return RedirectToAction(nameof(CreateBuildPage));
         }
 
