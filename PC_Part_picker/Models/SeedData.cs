@@ -319,7 +319,7 @@ namespace PC_Part_picker.Models
                         RatingCount = "Rating count",
                         Price = 560,
                         Publication = true,
-                        Status = "statusas",
+                        Status = "published",
                         Cpu = null,
                         Cooler = null,
                         Motherboard = null,

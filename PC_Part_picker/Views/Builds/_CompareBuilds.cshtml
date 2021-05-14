@@ -1,0 +1,168 @@
+﻿@model PC_Part_picker.Models.Build
+
+@{
+    var firstBuild = ViewBag.CompareFirstBuild;
+    var secondBuild = ViewBag.CompareSecondBuild;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cooler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motherboard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ram)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Storage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gpu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Psu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Case)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @if (firstBuild != null)
+            {
+                <td>
+                    @firstBuild.Id
+                </td>
+                <td>
+                    @firstBuild.Name
+                </td>
+                <td>
+                    @firstBuild.Rating
+                </td>
+                <td>
+                    @firstBuild.RatingCount
+                </td>
+                <td>
+                    @firstBuild.Rating
+                </td>
+                <td>
+                    @firstBuild.Price
+                </td>
+                <td>
+                    @firstBuild.Cpu
+                </td>
+                <td>
+                    @firstBuild.Cooler
+                </td>
+                <td>
+                    @firstBuild.Motherboard
+                </td>
+                <td>
+                    @firstBuild.Ram
+                </td>
+                <td>
+                    @firstBuild.Storage
+                </td>
+                <td>
+                    @firstBuild.Gpu
+                </td>
+                <td>
+                    @firstBuild.Psu
+                </td>
+                <td>
+                    @firstBuild.Case
+                </td>
+
+            }
+            else
+            {
+                <td>
+                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first">Choose Build</a>
+                </td>
+            }
+
+
+        </tr>
+        <tr>
+            @if (secondBuild != null)
+            {
+                <td>
+                    @secondBuild.Id
+                </td>
+                <td>
+                    @secondBuild.Name
+                </td>
+                <td>
+                    @secondBuild.Rating
+                </td>
+                <td>
+                    @secondBuild.RatingCount
+                </td>
+                <td>
+                    @secondBuild.Rating
+                </td>
+                <td>
+                    @secondBuild.Price
+                </td>
+                <td>
+                    @secondBuild.Cpu
+                </td>
+                <td>
+                    @secondBuild.Cooler
+                </td>
+                <td>
+                    @secondBuild.Motherboard
+                </td>
+                <td>
+                    @secondBuild.Ram
+                </td>
+                <td>
+                    @secondBuild.Storage
+                </td>
+                <td>
+                    @secondBuild.Gpu
+                </td>
+                <td>
+                    @secondBuild.Psu
+                </td>
+                <td>
+                    @secondBuild.Case
+                </td>
+
+            }
+            else
+            {
+                <td>
+                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second">Choose Build</a>
+                </td>
+            }
+
+        </tr>
+    </tbody>
+</table>
+
+
