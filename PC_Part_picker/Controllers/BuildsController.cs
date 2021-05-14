@@ -25,19 +25,57 @@ namespace PC_Part_picker.Controllers
             return View(await _context.Build.ToListAsync());
         }
 
-        public async Task<IActionResult> AllBuildsPage()
+        public IActionResult AllBuildsPage()
         {
-            return View(await _context.Build.ToListAsync());
+            var allBuilds = _context.Build.Where(s => s.Status == "finished").ToList();
+            return View("AllBuildsPage", allBuilds);
         }
 
-        public async Task<IActionResult> CompareBuildsPage()
+        public IActionResult CompareBuildsPage()
         {
-            return View(await _context.Build.ToListAsync());
+            //List<Build> builds = new List<Build>();
+            //builds.Add(null);
+            //builds.Add(null);
+            Build firstBuild = null;
+            Build secondBuild = null;
+            ViewBag.CompareFirstBuild = firstBuild;
+            ViewBag.CompareSecondBuild = secondBuild;
+            return View("CompareBuildsPage");
         }
 
+        public IActionResult ListBuilds(string buildPlace)
+        {
+            /*if (buildPlace == "first")
+                return View("ListBuilds", _context.Build.ToList());
+            else if (buildPlace == "second")
+                return View("ListBuilds", _context.Build.ToList());*/
+
+            var allBuilds = _context.Build.Where(s => s.Status == "finished").ToList();
+            return View("ListBuilds", allBuilds);
+            //return NotFound();
+        }
+        public IActionResult AddBuild(int? id)
+        {
+            //var build = GetUnfinishedBuild();
+            //var build = _context.Build.Find(id);
+            var first = ViewBag.CompareFirstBuild;
+            var second = ViewBag.CompareSecondBuild;
+            if(first == null)
+            {
+                ViewBag.CompareFirstBuild = _context.Build.Find(id);
+            }
+            else
+            {
+                ViewBag.CompareSecondBuild = _context.Build.Find(id);
+            }
+            //_context.Update(build);
+            //_context.SaveChanges();
+
+            return RedirectToAction(nameof(CompareBuildsPage));
+        }
         public IActionResult CreateBuildPage()
         {      
-            var build = GetUnfinishedBuild();;
+            var build = GetUnfinishedBuild();
             return View("CreateBuildPage", build);
         }
 
