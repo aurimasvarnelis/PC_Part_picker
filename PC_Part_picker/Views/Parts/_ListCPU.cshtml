@@ -1,89 +1,60 @@
 ﻿@model PC_Part_picker.ViewModels.PartViewModel
 
 <p>
-    <a asp-action="_CreateCPU">Create New</a>
+    <a asp-action="CreatePart" asp-route-partName="cpu">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Name)
+                @Html.DisplayNameFor(model => model.Cpu.First().Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Model)
+                @Html.DisplayNameFor(model => model.Cpu.First().Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Description)
+                @Html.DisplayNameFor(model => model.Cpu.First().Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Rating)
+                @Html.DisplayNameFor(model => model.Cpu.First().Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Price)
+                @Html.DisplayNameFor(model => model.Cpu.First().Manufacturer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Cores)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Frequency)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Series)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPU.First().Consumption)
+                @Html.DisplayNameFor(model => model.Cpu.First().Color)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CPU) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cores)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Frequency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Series)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Consumption)
-            </td>
-            <td>
-                <a asp-action="_EditCPU" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="_DetailsCPU" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="_DeleteCPU" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Cpu)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    <a asp-action="EditPart" asp-route-id="@item.Id" asp-route-partName="cpu">Edit</a> |
+                    <a asp-action="DetailsPart" asp-route-id="@item.Id" asp-route-partName="cpu">Details</a> |
+                    <a asp-action="DeletePart" asp-route-id="@item.Id" asp-route-partName="cpu">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

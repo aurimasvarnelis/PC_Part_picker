@@ -1,0 +1,71 @@
+﻿@model PC_Part_picker.Models.RAM
+
+<div>
+    <h4>RAM</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Frequency)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Frequency)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ModuleCount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModuleCount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemorySize)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemorySize)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="ListRam">Back to List</a>
+</div>

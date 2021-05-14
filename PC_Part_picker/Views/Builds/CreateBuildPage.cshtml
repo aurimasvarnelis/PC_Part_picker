@@ -1,0 +1,227 @@
+﻿@model PC_Part_picker.Models.Build
+
+
+@{
+    ViewData["Title"] = "Create build";
+}
+<h1>Create build</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Part
+            </th>
+            <th>
+                Selected
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                CPU
+            </td>
+            <td>
+                @if (Model != null && Model.Cpu != null)
+                {
+                    @Html.DisplayFor(model => Model.Cpu.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="cpu">Choose CPU</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Cpu.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Cpu != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="cpu">Delete</a>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                CPU Cooler
+            </td>
+            <td>
+
+                @if (Model != null && Model.Cooler != null)
+                {
+                    @Html.DisplayFor(model => Model.Cooler.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="cooler">Choose CPU Cooler</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Cooler.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Cooler != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="cooler">Delete</a>
+                }       
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Motherboard
+            </td>
+            <td>
+                @if (Model != null && Model.Motherboard != null)
+                {
+                    @Html.DisplayFor(model => Model.Motherboard.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="motherboard">Choose Motherboard</a>
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Motherboard.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Motherboard != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="motherboard">Delete</a>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                RAM
+            </td>
+            <td>
+                @if (Model != null && Model.Ram != null)
+                {
+                    @Html.DisplayFor(model => Model.Ram.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="ram">Choose RAM</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Ram.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Ram != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="ram">Delete</a>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Storage
+            </td>
+            <td>
+                @if (Model != null && Model.Storage != null)
+                {
+                    @Html.DisplayFor(model => Model.Storage.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="storage">Choose Storage</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Storage.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Storage != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="storage">Delete</a>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                GPU
+            </td>
+            <td>
+                @if (Model != null && Model.Gpu != null)
+                {
+                    @Html.DisplayFor(model => Model.Gpu.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="gpu">Choose GPU</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Gpu.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Gpu != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="gpu">Delete</a>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                PSU
+            </td>
+            <td>
+                @if (Model != null && Model.Psu != null)
+                {
+                    @Html.DisplayFor(model => Model.Psu.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="psu">Choose PSU</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Psu.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Psu != null)
+                {
+                    <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="psu">Delete</a>
+                }           
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Case
+            </td>
+            <td>
+                @if (Model != null && Model.Case != null)
+                {
+                    @Html.DisplayFor(model => Model.Case.Name)
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListPart" asp-route-partName="case">Choose Case</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => Model.Case.Price)
+            </td>
+            <td>
+                @if (Model != null && Model.Case != null)
+                {
+                <a asp-controller="Builds" asp-action="DeletePart" asp-route-id="@Model.Id" asp-route-partName="case">Delete</a>
+                }               
+            </td>
+        </tr>
+    </tbody>
+</table>

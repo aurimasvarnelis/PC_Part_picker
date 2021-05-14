@@ -2,7 +2,7 @@
 
 namespace PC_Part_picker.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,6 @@ namespace PC_Part_picker.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
@@ -22,7 +21,7 @@ namespace PC_Part_picker.Migrations
                     Cores = table.Column<int>(nullable: false),
                     Frequency = table.Column<string>(nullable: true),
                     Series = table.Column<string>(nullable: true),
-                    Consumption = table.Column<int>(nullable: false)
+                    Consumption = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,14 +44,13 @@ namespace PC_Part_picker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GPU",
+                name: "Gpu",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
@@ -60,22 +58,21 @@ namespace PC_Part_picker.Migrations
                     Memory = table.Column<string>(nullable: true),
                     Frequency = table.Column<string>(nullable: true),
                     MemoryType = table.Column<string>(nullable: true),
-                    Consumption = table.Column<int>(nullable: false)
+                    Consumption = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GPU", x => x.Id);
+                    table.PrimaryKey("PK_Gpu", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RAM",
+                name: "Ram",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
@@ -87,7 +84,7 @@ namespace PC_Part_picker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RAM", x => x.Id);
+                    table.PrimaryKey("PK_Ram", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,7 +108,6 @@ namespace PC_Part_picker.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
@@ -119,7 +115,7 @@ namespace PC_Part_picker.Migrations
                     Type = table.Column<string>(nullable: true),
                     Capacity = table.Column<string>(nullable: true),
                     Connector = table.Column<string>(nullable: true),
-                    Speed = table.Column<string>(nullable: true)
+                    Cache = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -134,13 +130,12 @@ namespace PC_Part_picker.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true),
-                    SizeFormat = table.Column<string>(nullable: true),
+                    FormFactor = table.Column<int>(nullable: false),
                     DimensionsId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -155,29 +150,28 @@ namespace PC_Part_picker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PSU",
+                name: "Psu",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true),
-                    Power = table.Column<string>(nullable: true),
-                    SoundLevel = table.Column<string>(nullable: true),
-                    Efficiency = table.Column<string>(nullable: true),
+                    FormFactor = table.Column<int>(nullable: false),
+                    Wattage = table.Column<string>(nullable: true),
+                    Modular = table.Column<string>(nullable: true),
+                    EfficiencyRating = table.Column<string>(nullable: true),
                     DimensionsId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PSU", x => x.Id);
+                    table.PrimaryKey("PK_Psu", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PSU_Dimensions_DimensionsId",
+                        name: "FK_Psu_Dimensions_DimensionsId",
                         column: x => x.DimensionsId,
                         principalTable: "Dimensions",
                         principalColumn: "Id",
@@ -192,16 +186,13 @@ namespace PC_Part_picker.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
-                    Purpose = table.Column<string>(nullable: true),
                     SoundLevel = table.Column<string>(nullable: true),
                     Speed = table.Column<string>(nullable: true),
                     RadiatorSize = table.Column<string>(nullable: true),
-                    EnergyEfficiency = table.Column<int>(nullable: false),
                     SocketId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -223,15 +214,13 @@ namespace PC_Part_picker.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Manufacturer = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: true),
-                    ProccessorSocket = table.Column<string>(nullable: true),
-                    MemorySocket = table.Column<int>(nullable: false),
+                    MemorySlots = table.Column<int>(nullable: false),
                     MemoryType = table.Column<string>(nullable: true),
-                    EnergyConsumption = table.Column<string>(nullable: true),
+                    FormFactor = table.Column<int>(nullable: false),
                     SocketId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -260,7 +249,7 @@ namespace PC_Part_picker.Migrations
                     CpuId = table.Column<int>(nullable: true),
                     CoolerId = table.Column<int>(nullable: true),
                     MotherboardId = table.Column<int>(nullable: true),
-                    RAMId = table.Column<int>(nullable: true),
+                    RamId = table.Column<int>(nullable: true),
                     StorageId = table.Column<int>(nullable: true),
                     GpuId = table.Column<int>(nullable: true),
                     PsuId = table.Column<int>(nullable: true),
@@ -288,9 +277,9 @@ namespace PC_Part_picker.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Build_GPU_GpuId",
+                        name: "FK_Build_Gpu_GpuId",
                         column: x => x.GpuId,
-                        principalTable: "GPU",
+                        principalTable: "Gpu",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -300,15 +289,15 @@ namespace PC_Part_picker.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Build_PSU_PsuId",
+                        name: "FK_Build_Psu_PsuId",
                         column: x => x.PsuId,
-                        principalTable: "PSU",
+                        principalTable: "Psu",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Build_RAM_RAMId",
-                        column: x => x.RAMId,
-                        principalTable: "RAM",
+                        name: "FK_Build_Ram_RamId",
+                        column: x => x.RamId,
+                        principalTable: "Ram",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -350,9 +339,9 @@ namespace PC_Part_picker.Migrations
                 column: "PsuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Build_RAMId",
+                name: "IX_Build_RamId",
                 table: "Build",
-                column: "RAMId");
+                column: "RamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Build_StorageId",
@@ -375,8 +364,8 @@ namespace PC_Part_picker.Migrations
                 column: "SocketId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PSU_DimensionsId",
-                table: "PSU",
+                name: "IX_Psu_DimensionsId",
+                table: "Psu",
                 column: "DimensionsId");
         }
 
@@ -395,16 +384,16 @@ namespace PC_Part_picker.Migrations
                 name: "Cpu");
 
             migrationBuilder.DropTable(
-                name: "GPU");
+                name: "Gpu");
 
             migrationBuilder.DropTable(
                 name: "Motherboard");
 
             migrationBuilder.DropTable(
-                name: "PSU");
+                name: "Psu");
 
             migrationBuilder.DropTable(
-                name: "RAM");
+                name: "Ram");
 
             migrationBuilder.DropTable(
                 name: "Storage");

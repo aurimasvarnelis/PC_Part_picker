@@ -1,0 +1,60 @@
+﻿@model PC_Part_picker.ViewModels.PartViewModel
+
+@{
+    ViewData["Title"] = "Computer parts";
+}
+
+<h1>Computer parts</h1>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-cpu-tab" data-toggle="pill" href="#pills-cpu" role="tab" aria-controls="pills-cpu" aria-selected="true">CPU</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-cooler-tab" data-toggle="pill" href="#pills-cooler" role="tab" aria-controls="pills-cooler" aria-selected="false">Cooler</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-motherboard-tab" data-toggle="pill" href="#pills-motherboard" role="tab" aria-controls="pills-motherboard" aria-selected="false">Motherboard</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-ram-tab" data-toggle="pill" href="#pills-ram" role="tab" aria-controls="pills-ram" aria-selected="false">RAM</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-storage-tab" data-toggle="pill" href="#pills-storage" role="tab" aria-controls="pills-storage" aria-selected="false">Storage</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-gpu-tab" data-toggle="pill" href="#pills-gpu" role="tab" aria-controls="pills-gpu" aria-selected="false">GPU</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-psu-tab" data-toggle="pill" href="#pills-psu" role="tab" aria-controls="pills-psu" aria-selected="false">Power supply</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-case-tab" data-toggle="pill" href="#pills-case" role="tab" aria-controls="pills-case" aria-selected="false">Case</a>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-cpu" role="tabpanel" aria-labelledby="pills-cpu-tab">
+        @Html.Partial("_ListCpu", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-cooler" role="tabpanel" aria-labelledby="pills-cooler-tab">
+        @Html.Partial("_ListCooler", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-motherboard" role="tabpanel" aria-labelledby="pills-motherboard-tab">
+        @Html.Partial("_ListMotherboard", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-ram" role="tabpanel" aria-labelledby="pills-ram-tab">
+        @Html.Partial("_ListRam", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-storage" role="tabpanel" aria-labelledby="pills-storage-tab">
+        @Html.Partial("_ListStorage", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-gpu" role="tabpanel" aria-labelledby="pills-gpu-tab">
+        @Html.Partial("_ListGpu", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-psu" role="tabpanel" aria-labelledby="pills-psu-tab">
+        @Html.Partial("_ListPsu", Model)
+    </div>
+    <div class="tab-pane fade" id="pills-case" role="tabpanel" aria-labelledby="pills-case-tab">
+        @Html.Partial("_ListCase", Model)
+    </div>
+</div>
+

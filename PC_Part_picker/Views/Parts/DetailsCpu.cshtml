@@ -1,14 +1,20 @@
-﻿@model PC_Part_picker.Models.GPU
+﻿@model PC_Part_picker.Models.CPU
+
+@{
+    ViewData["Title"] = "DetailsCpu";
+}
+
+<h1>DetailsCpu</h1>
 
 <div>
-    <h4>GPU</h4>
+    <h4>CPU</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Memory)
+            @Html.DisplayNameFor(model => model.Cores)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Memory)
+            @Html.DisplayFor(model => model.Cores)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Frequency)
@@ -17,10 +23,10 @@
             @Html.DisplayFor(model => model.Frequency)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MemoryType)
+            @Html.DisplayNameFor(model => model.Series)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MemoryType)
+            @Html.DisplayFor(model => model.Series)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Consumption)
@@ -39,12 +45,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Rating)
@@ -73,6 +73,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="EditPart" asp-route-id="@Model.Id" asp-route-partName="cpu">Edit</a> |
+    <a asp-action="PartListPage">Back to List</a>
 </div>

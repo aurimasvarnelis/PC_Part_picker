@@ -1,0 +1,71 @@
+﻿@model PC_Part_picker.Models.PSU
+
+<div>
+    <h4>PSU</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FormFactor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FormFactor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wattage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wattage)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Modular)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Modular)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EfficiencyRating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EfficiencyRating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="ListPsu">Back to List</a>
+</div>

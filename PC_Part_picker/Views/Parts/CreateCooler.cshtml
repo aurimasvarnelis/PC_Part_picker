@@ -1,34 +1,31 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model PC_Part_picker.Models.Cooler
+
+@{
+    ViewData["Title"] = "CreateCooler";
 }
 
-@model PC_Part_picker.Models.CPU
+<h1>CreateCooler</h1>
 
-<h4>CPU</h4>
+<h4>Cooler</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="_CreateCPU">
+        <form asp-action="CreateCooler">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Cores" class="control-label"></label>
-                <input asp-for="Cores" class="form-control" />
-                <span asp-validation-for="Cores" class="text-danger"></span>
+                <label asp-for="SoundLevel" class="control-label"></label>
+                <input asp-for="SoundLevel" class="form-control" />
+                <span asp-validation-for="SoundLevel" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Frequency" class="control-label"></label>
-                <input asp-for="Frequency" class="form-control" />
-                <span asp-validation-for="Frequency" class="text-danger"></span>
+                <label asp-for="Speed" class="control-label"></label>
+                <input asp-for="Speed" class="form-control" />
+                <span asp-validation-for="Speed" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Series" class="control-label"></label>
-                <input asp-for="Series" class="form-control" />
-                <span asp-validation-for="Series" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Consumption" class="control-label"></label>
-                <input asp-for="Consumption" class="form-control" />
-                <span asp-validation-for="Consumption" class="text-danger"></span>
+                <label asp-for="RadiatorSize" class="control-label"></label>
+                <input asp-for="RadiatorSize" class="form-control" />
+                <span asp-validation-for="RadiatorSize" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -39,11 +36,6 @@
                 <label asp-for="Model" class="control-label"></label>
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
@@ -73,7 +65,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="PartListPage">Back to List</a>
 </div>
 
 @section Scripts {
