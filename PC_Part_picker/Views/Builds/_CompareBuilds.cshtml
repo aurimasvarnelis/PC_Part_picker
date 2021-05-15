@@ -96,16 +96,31 @@
                 <td>
                     @firstBuild.Case
                 </td>
-
+                <td>
+                @{
+                    if(secondBuild != null){
+                        <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@firstBuild.Id" asp-route-second="@secondBuild.Id">Change</a>
+                    }else{
+                        <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@firstBuild.Id" asp-route-second="@null">Change</a>
+                    }
+                }
+                </td>
             }
             else
             {
                 <td>
-                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first">Choose Build</a>
+            @{
+                if (secondBuild != null)
+                {
+                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="@secondBuild.Id">Choose Build</a>
+                }
+                else
+                {
+                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="@null">Choose Build</a>
+                }
+            }
                 </td>
             }
-
-
         </tr>
         <tr>
             @if (secondBuild != null)
@@ -152,12 +167,32 @@
                 <td>
                     @secondBuild.Case
                 </td>
-
+                <td>
+                    @{
+                        if (firstBuild != null)
+                        {
+                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@firstBuild.Id" asp-route-second="@secondBuild.Id">Change</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@null" asp-route-second="@null">Change</a>
+                        }
+                    }
+                </td>
             }
             else
             {
                 <td>
-                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second">Choose Build</a>
+                    @{
+                        if (firstBuild != null)
+                        {
+                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@firstBuild.Id" asp-route-second="@null">Choose Build</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@null" asp-route-second="@null">Choose Build</a>
+                        }
+                    }
                 </td>
             }
 
