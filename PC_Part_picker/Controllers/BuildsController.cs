@@ -25,7 +25,7 @@ namespace PC_Part_picker.Controllers
         {
             return View(await _context.Build.ToListAsync());
         }
-
+        
         public IActionResult AllBuildsPage()
         {
             var allBuilds = _context.Build.Where(s => s.Status == "finished").ToList();
@@ -34,44 +34,38 @@ namespace PC_Part_picker.Controllers
 
         public IActionResult CompareBuildsPage()
         {
-            //List<Build> builds = new List<Build>();
-            //builds.Add(null);
-            //builds.Add(null);
-            Build firstBuild = null;
-            Build secondBuild = null;
-            ViewBag.CompareFirstBuild = firstBuild;
-            ViewBag.CompareSecondBuild = secondBuild;
+            ViewBag.CompareFirstBuild = _context.Build.Find(TempData["CompareFirstBuild"]);
+            ViewBag.CompareSecondBuild = _context.Build.Find(TempData["CompareSecondBuild"]);
             return View("CompareBuildsPage");
         }
 
-        public IActionResult ListBuilds(string buildPlace)
+        public IActionResult ListBuilds(string buildPlace, int? first, int? second)
         {
-            /*if (buildPlace == "first")
-                return View("ListBuilds", _context.Build.ToList());
-            else if (buildPlace == "second")
-                return View("ListBuilds", _context.Build.ToList());*/
-
-            var allBuilds = _context.Build.Where(s => s.Status == "finished").ToList();
-            return View("ListBuilds", allBuilds);
-            //return NotFound();
-        }
-        public IActionResult AddBuild(int? id)
-        {
-            //var build = GetUnfinishedBuild();
-            //var build = _context.Build.Find(id);
-            var first = ViewBag.CompareFirstBuild;
-            var second = ViewBag.CompareSecondBuild;
-            if(first == null)
-            {
-                ViewBag.CompareFirstBuild = _context.Build.Find(id);
+            if (buildPlace.CompareTo("first") == 0) {
+                ViewBag.ComparePlace = "first";
             }
             else
             {
-                ViewBag.CompareSecondBuild = _context.Build.Find(id);
+                ViewBag.ComparePlace = "second";
             }
-            //_context.Update(build);
-            //_context.SaveChanges();
+            ViewBag.CompareFirstBuildId = first;
+            ViewBag.CompareSecondBuildId = second;
 
+            var allBuilds = _context.Build.Where(s => s.Status == "finished").ToList();
+            return View("ListBuilds", allBuilds);
+        }
+        public IActionResult AddBuild(int? id, string place, int? first, int? second)
+        {
+            if (place.CompareTo("first") == 0)
+            {
+                TempData["CompareFirstBuild"] = id;
+                TempData["CompareSecondBuild"] = second;
+            }
+            else
+            {
+                TempData["CompareFirstBuild"] = first;
+                TempData["CompareSecondBuild"] = id;
+            }
             return RedirectToAction(nameof(CompareBuildsPage));
         }
         public IActionResult CreateBuildPage()

@@ -92,7 +92,7 @@
                     @Html.DisplayFor(modelItem => item.Case)
                 </td>
                 <td>
-                    <a asp-action="AddBuild" asp-route-id="@item.Id" >Add</a> |
+                    <a asp-action="AddBuild" asp-route-id="@item.Id" asp-route-place="@ViewBag.ComparePlace" asp-route-first="@ViewBag.CompareFirstBuildId" asp-route-second="@ViewBag.CompareSecondBuildId">Add</a> |
                 </td>
             </tr>
         }
