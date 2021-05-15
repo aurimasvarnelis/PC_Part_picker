@@ -301,5 +301,42 @@ namespace PC_Part_picker.Controllers
             return RedirectToAction(nameof(CreateBuildPage));
         }
 
+        public IActionResult RecommendPart(string partName)
+        {
+            var build = GetUnfinishedBuild();
+            if (partName == "cpu")
+            {
+                return View("ListCpu", _context.Cpu.ToList().OrderByDescending(s => s.Rating));
+            }
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        /*public List<object> GetUsedParts(string partName)
+        {
+            var builds = _context.Build
+                .Include(i => i.Cpu)
+                .Include(i => i.Cooler)
+                .Include(i => i.Motherboard)
+                .Include(i => i.Ram)
+                .Include(i => i.Storage)
+                .Include(i => i.Gpu)
+                .Include(i => i.Psu)
+                .Include(i => i.Case)
+                .Where(s => s.Status == "finished")
+                .ToList();
+            
+            if (partName == "cpu")
+            {
+                var parts = builds
+                    .GroupBy(x => x.Cpu.Id)
+                    .OrderByDescending(g => g.Count())
+                    .Select(x => x.Key)
+                    .ToList();
+                return parts;
+                //return View("ListCpu", _context.Cpu.ToList().OrderByDescending(s => s.Rating));
+            }
+            //return RedirectToAction(nameof(CreateBuildPage));
+        }*/
+
     }
 }
