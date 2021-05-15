@@ -17,7 +17,8 @@ namespace PC_Part_picker.Models
         public double Price { get; set; }
         public string Manufacturer { get; set; }
         public string Color { get; set; }
-        //public ICollection<PartCompatibility> Compatibilities { get; set; }
+        public ICollection<PartCompatibility> Compatibilities { get; set; }
+
     }
 
     public class SocketCPU
@@ -72,7 +73,7 @@ namespace PC_Part_picker.Models
         public string Frequency { get; set; }
         public string ModuleCount { get; set; }
         public string MemorySize { get; set; }
-    } 
+    }
 
     public class Storage : Part
     {
