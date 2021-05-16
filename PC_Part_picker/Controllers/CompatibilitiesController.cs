@@ -39,24 +39,6 @@ namespace PC_Part_picker.Controllers
             return View(compatibilites);
         }
 
-        // GET: Compatibilities/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var compatibility = await _context.Compatibilities
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (compatibility == null)
-            {
-                return NotFound();
-            }
-
-            return View(compatibility);
-        }
-
         // GET: Compatibilities/Create
         public IActionResult Create()
         {
@@ -197,32 +179,14 @@ namespace PC_Part_picker.Controllers
             return View(compatibility);
         }
 
-        // GET: Compatibilities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var compatibility = await _context.Compatibilities
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (compatibility == null)
-            {
-                return NotFound();
-            }
-
-            return View(compatibility);
-        }
-
         // POST: Compatibilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var compatibility = await _context.Compatibilities.FindAsync(id);
+            var compatibility = _context.Compatibilities.Find(id);
             _context.Compatibilities.Remove(compatibility);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
