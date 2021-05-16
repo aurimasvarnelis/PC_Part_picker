@@ -1,0 +1,45 @@
+﻿@model PC_Part_picker.ViewModels.TwoPartCompatibilities
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Create</h1>
+
+<h4>Compatibility</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" name="AllParts" value="@Model.AllParts" />
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    Model.AllParts.ForEach(p =>
+                    {
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = p.Name,
+                            Value = p.Id.ToString() + "`" + p.Name
+                        });
+                    });
+                }
+                <label class="control-label">Select first part:</label>
+                @Html.DropDownListFor(model => model.FirstPartId, listItems, "-- First Part --")
+                <label class="control-label">Select second part:</label>
+                @Html.DropDownListFor(model => model.SecondPartId, listItems, "-- Second Part --")
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using PC_Part_picker.Configurations;
 using PC_Part_picker.Models;
 
 namespace PC_Part_picker.Data
@@ -27,17 +26,15 @@ namespace PC_Part_picker.Data
         public DbSet<PSU> Psu { get; set; }
         public DbSet<Case> Case { get; set; }
         public DbSet<Build> Build { get; set; }
+        public DbSet<PartCompatibility> PartCompatibilities { get; set; }
+        public DbSet<Compatibility> Compatibilities { get; set; }
 
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
-             // modelBuilder.Entity<CPU>().ToTable("CPU");
-             // modelBuilder.Entity<GPU>().ToTable("GPU");
-             // modelBuilder.Entity<Part>().ToTable("Part");
-             /*modelBuilder.ApplyConfiguration(new CompatibilityConfiguration());
-             modelBuilder.ApplyConfiguration(new PartsConfiguration());
-             modelBuilder.ApplyConfiguration(new PartCompatibilityConfiguration());
-             modelBuilder.Entity<PartCompatibility>().HasKey(pc => new {pc.PartId, pc.CompatibilityId});*/
+            // modelBuilder.Entity<CPU>().ToTable("CPU");
+            // modelBuilder.Entity<GPU>().ToTable("GPU");
+            // modelBuilder.Entity<Part>().ToTable("Part");
          }
 
 
