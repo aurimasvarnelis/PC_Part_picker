@@ -37,7 +37,6 @@ namespace PC_Part_picker.Controllers
             ViewBag.CompareSecondBuild = _context.Build.Find(TempData["CompareSecondBuild"]);
             return View("CompareBuildsPage");
         }
-
         public IActionResult ListBuilds(string buildPlace, int? first, int? second)
         {
             if (buildPlace.CompareTo("first") == 0) {
@@ -72,7 +71,6 @@ namespace PC_Part_picker.Controllers
             var build = GetUnfinishedBuild();
             return View("CreateBuildPage", build);
         }
-
         private bool BuildExists(int id)
         {
             return _context.Build.Any(e => e.Id == id);
@@ -98,7 +96,6 @@ namespace PC_Part_picker.Controllers
                 return View("ListCase", _context.Case.ToList());
             return NotFound();
         }
-
         public IActionResult AddPart(int? id, string partName)
         {
             var build = GetUnfinishedBuild();
@@ -149,7 +146,6 @@ namespace PC_Part_picker.Controllers
 
             return RedirectToAction(nameof(CreateBuildPage));
         }
-
         public IActionResult DetailsPart(int? id, string partName)
         {
             if (partName == "cpu")
@@ -203,7 +199,6 @@ namespace PC_Part_picker.Controllers
 
             return NotFound();
         }
-
         public Build GetUnfinishedBuild()
         {
             var build = _context.Build
@@ -228,7 +223,6 @@ namespace PC_Part_picker.Controllers
             }
             return build; 
         }
-
         public IActionResult DeletePart(int? id, string partName)
         {
             var build = _context.Build
