@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PC_Part_picker.Data;
 using PC_Part_picker.Models;
+using System.Web;
 
 namespace PC_Part_picker.Controllers
 {
@@ -258,6 +259,72 @@ namespace PC_Part_picker.Controllers
 
             return RedirectToAction(nameof(CreateBuildPage));
         }
+
+
+
+        public IActionResult FinishBuild()
+        {
+            var build = GetUnfinishedBuild();
+            if(build.Cpu != null && build.Cooler != null && build.Motherboard != null && build.Ram != null 
+                && build.Storage != null && build.Gpu != null && build.Psu != null && build.Case != null)
+            {
+                build.Status = "finished";
+                build.Price = build.Cpu.Price +
+                    build.Cooler.Price +
+                    build.Motherboard.Price +
+                    build.Ram.Price +
+                    build.Storage.Price +
+                    build.Gpu.Price +
+                    build.Psu.Price +
+                    build.Case.Price;
+                _context.Update(build);
+                _context.SaveChanges();
+                TempData["Success"] = "Build was saved";
+            }
+            else
+            {
+                TempData["Error"] = "Not all parts selected";   
+            }
+            
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        public IActionResult RecommendPart(string partName)
+        {
+            var build = GetUnfinishedBuild();
+            if (partName == "cpu")
+            {
+                return View("ListCpu", _context.Cpu.ToList().OrderByDescending(s => s.Rating));
+            }
+            return RedirectToAction(nameof(CreateBuildPage));
+        }
+
+        /*public List<object> GetUsedParts(string partName)
+        {
+            var builds = _context.Build
+                .Include(i => i.Cpu)
+                .Include(i => i.Cooler)
+                .Include(i => i.Motherboard)
+                .Include(i => i.Ram)
+                .Include(i => i.Storage)
+                .Include(i => i.Gpu)
+                .Include(i => i.Psu)
+                .Include(i => i.Case)
+                .Where(s => s.Status == "finished")
+                .ToList();
+            
+            if (partName == "cpu")
+            {
+                var parts = builds
+                    .GroupBy(x => x.Cpu.Id)
+                    .OrderByDescending(g => g.Count())
+                    .Select(x => x.Key)
+                    .ToList();
+                return parts;
+                //return View("ListCpu", _context.Cpu.ToList().OrderByDescending(s => s.Rating));
+            }
+            //return RedirectToAction(nameof(CreateBuildPage));
+        }*/
 
     }
 }
