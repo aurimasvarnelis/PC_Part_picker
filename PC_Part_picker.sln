@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC_Part_picker", "PC_Part_picker\PC_Part_picker.csproj", "{05CAC4E4-9661-40B7-A513-2999B6CC8F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PC_Part_picker", "PC_Part_picker\PC_Part_picker.csproj", "{05CAC4E4-9661-40B7-A513-2999B6CC8F5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

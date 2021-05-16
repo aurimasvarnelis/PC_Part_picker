@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Index.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Models\Index.cshtml" />
     <Content Remove="Views\Builds\Index.cshtml" />
     <Content Remove="Views\Builds\_AllBuilds - Copy.cshtml" />
   </ItemGroup>

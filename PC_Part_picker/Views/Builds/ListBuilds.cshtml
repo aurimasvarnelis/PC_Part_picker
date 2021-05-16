@@ -62,34 +62,31 @@
                     @Html.DisplayFor(modelItem => item.RatingCount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cpu)
+                    @Html.DisplayFor(modelItem => item.Cpu.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cooler)
+                    @Html.DisplayFor(modelItem => item.Cooler.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Motherboard)
+                    @Html.DisplayFor(modelItem => item.Motherboard.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Ram)
+                    @Html.DisplayFor(modelItem => item.Ram.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Storage)
+                    @Html.DisplayFor(modelItem => item.Storage.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gpu)
+                    @Html.DisplayFor(modelItem => item.Gpu.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Psu)
+                    @Html.DisplayFor(modelItem => item.Psu.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Case)
+                    @Html.DisplayFor(modelItem => item.Case.Name)
                 </td>
                 <td>
                     <a asp-action="AddBuild" asp-route-id="@item.Id" asp-route-place="@ViewBag.ComparePlace" asp-route-first="@ViewBag.CompareFirstBuildId" asp-route-second="@ViewBag.CompareSecondBuildId">Add</a> |

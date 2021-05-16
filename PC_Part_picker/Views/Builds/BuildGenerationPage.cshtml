@@ -1,0 +1,129 @@
+﻿@model PC_Part_picker.Models.BuildGenerationSelect
+
+@{
+    ViewData["Title"] = "Generate build";
+    var firstBuild =  ViewBag.GeneratedBuild;
+    var error = ViewBag.GenerateBuildError;
+}
+
+<h1>Generate build</h1>
+@using (Html.BeginForm("GenerateBuild", "Builds", FormMethod.Post))
+{
+    <td>
+        @Html.DropDownListFor(m => m.Id, new List<SelectListItem>
+        {
+            new SelectListItem{ Text="0-100$", Value = "1" },
+            new SelectListItem{ Text="100-500$", Value = "2" },
+            new SelectListItem{ Text="500-1000$", Value = "3" },
+            new SelectListItem{ Text=">1000$", Value = "4" },
+        })
+    </td>
+    <p></p>
+    <div>
+        <input type="submit" value="Generate"/>
+        <!--<a class="btn btn-primary" asp-action="GenerateBuild">Generate</a>-->
+    </div>
+}
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                RatingCount
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Cpu
+            </th>
+            <th>
+                Cooler
+            </th>
+            <th>
+                Motherboard
+            </th>
+            <th>
+                Ram
+            </th>
+            <th>
+                Storage
+            </th>
+            <th>
+                Gpu
+            </th>
+            <th>
+                Psu
+            </th>
+            <th>
+                Case
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @if (firstBuild != null)
+            {
+                <td>
+                    @firstBuild.Id
+                </td>
+                <td>
+                    @firstBuild.Name
+                </td>
+                <td>
+                    @firstBuild.Rating
+                </td>
+                <td>
+                    @firstBuild.RatingCount
+                </td>
+                <td>
+                    @firstBuild.Price
+                </td>
+                <td>
+                    @firstBuild.Cpu.Name
+                </td>
+                <td>
+                    @firstBuild.Cooler.Name
+                </td>
+                <td>
+                    @firstBuild.Motherboard.Name
+                </td>
+                <td>
+                    @firstBuild.Ram.Name
+                </td>
+                <td>
+                    @firstBuild.Storage.Name
+                </td>
+                <td>
+                    @firstBuild.Gpu.Name
+                </td>
+                <td>
+                    @firstBuild.Psu.Name
+                </td>
+                <td>
+                    @firstBuild.Case.Name
+                </td>
+                <td>
+                </td>
+            }
+            else
+            {
+        <td>
+            @error
+            <!--<a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="">Choose Build</a>-->
+        </td>
+            }
+        </tr>
+    </tbody>
+</table>
+
