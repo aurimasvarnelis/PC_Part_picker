@@ -96,9 +96,9 @@
                 <td>
                 @{
                     if(secondBuild != null){
-                        <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@firstBuild.Id" asp-route-second="@secondBuild.Id">Change</a>
+                        <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="first" asp-route-first="@firstBuild.Id" asp-route-second="@secondBuild.Id">Change</a>
                     }else{
-                        <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@firstBuild.Id" asp-route-second="@null">Change</a>
+                        <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="first" asp-route-first="@firstBuild.Id" asp-route-second="@null">Change</a>
                     }
                 }
                 </td>
@@ -109,11 +109,11 @@
             @{
                 if (secondBuild != null)
                 {
-                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="@secondBuild.Id">Choose Build</a>
+                    <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="@secondBuild.Id">Choose Build</a>
                 }
                 else
                 {
-                    <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="@null">Choose Build</a>
+                    <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="@null">Choose Build</a>
                 }
             }
                 </td>
@@ -165,11 +165,11 @@
                     @{
                         if (firstBuild != null)
                         {
-                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@firstBuild.Id" asp-route-second="@secondBuild.Id">Change</a>
+                            <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="second" asp-route-first="@firstBuild.Id" asp-route-second="@secondBuild.Id">Change</a>
                         }
                         else
                         {
-                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@null" asp-route-second="@null">Change</a>
+                            <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="second" asp-route-first="@null" asp-route-second="@null">Change</a>
                         }
                     }
                 </td>
@@ -180,11 +180,11 @@
                     @{
                         if (firstBuild != null)
                         {
-                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@firstBuild.Id" asp-route-second="@null">Choose Build</a>
+                            <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="second" asp-route-first="@firstBuild.Id" asp-route-second="@null">Choose Build</a>
                         }
                         else
                         {
-                            <a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="second" asp-route-first="@null" asp-route-second="@null">Choose Build</a>
+                            <a asp-controller="Builds" asp-action="BuildsPage" asp-route-buildPlace="second" asp-route-first="@null" asp-route-second="@null">Choose Build</a>
                         }
                     }
                 </td>
