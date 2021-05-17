@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Generate build";
-    var firstBuild =  ViewBag.GeneratedBuild;
+    var firstBuild = ViewBag.GeneratedBuild;
     var error = ViewBag.GenerateBuildError;
 }
 
@@ -20,9 +20,19 @@
     </td>
     <p></p>
     <div>
-        <input type="submit" value="Generate"/>
+        <input type="submit" value="Generate" />
         <!--<a class="btn btn-primary" asp-action="GenerateBuild">Generate</a>-->
     </div>
+}
+@if (@TempData["GenerateError"] != null)
+{
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    @TempData["GenerateError"]
+</div>
 }
 <hr>
 <table class="table">
@@ -118,10 +128,10 @@
             }
             else
             {
-        <td>
-            @error
-            <!--<a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="">Choose Build</a>-->
-        </td>
+                <td>
+                    @error
+                    <!--<a asp-controller="Builds" asp-action="ListBuilds" asp-route-buildPlace="first" asp-route-first="@null" asp-route-second="">Choose Build</a>-->
+                </td>
             }
         </tr>
     </tbody>

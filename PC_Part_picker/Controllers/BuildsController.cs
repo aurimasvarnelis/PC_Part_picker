@@ -67,20 +67,20 @@ namespace PC_Part_picker.Controllers
                 .Include(i => i.Storage)
                 .Include(i => i.Gpu)
                 .Include(i => i.Psu)
-                .Include(i => i.Case).FirstOrDefault(x => x.Id == firstBuild);
+                .Include(i => i.Case).Where(s => s.Status == "finished").FirstOrDefault(x => x.Id == firstBuild);
             //.Find(TempData["CompareFirstBuild"]);
-            ViewBag.CompareSecondBuild = _context.Build
+            ViewBag.CompareSecondBuild = _context.Build.Include(i => i.Cpu)
                 .Include(i => i.Cooler)
                 .Include(i => i.Motherboard)
                 .Include(i => i.Ram)
                 .Include(i => i.Storage)
                 .Include(i => i.Gpu)
                 .Include(i => i.Psu)
-                .Include(i => i.Case).FirstOrDefault(x => x.Id == secondBuild);
+                .Include(i => i.Case).Where(s => s.Status == "finished").FirstOrDefault(x => x.Id == secondBuild);
                // .Find(TempData["CompareSecondBuild"]).Include(i => i.Cpu);
             return View("CompareBuildsPage");
         }
-        public IActionResult ListBuilds(string buildPlace, int? first, int? second)
+        public IActionResult BuildsPage(string buildPlace, int? first, int? second)
         {
             if (buildPlace.CompareTo("first") == 0) {
                 ViewBag.ComparePlace = "first";
@@ -167,10 +167,12 @@ namespace PC_Part_picker.Controllers
             if(build == null)
             {
                 ViewBag.GenerateBuildError = "No matching build found";
+                TempData["GenerateError"] = "No matching build found";
             }
             else
             {
                 ViewBag.GenerateBuildError = "";
+                TempData["GenerateError"] = null;
             }
             return View("BuildGenerationPage");
         }
