@@ -19,6 +19,11 @@ namespace PC_Part_picker.Models
         public string Color { get; set; }
         public ICollection<PartCompatibility> Compatibilities { get; set; }
 
+        public string GetUniqueIdentification()
+        {
+            return Id + "`" + Name;
+        }
+
     }
 
     public class SocketCPU

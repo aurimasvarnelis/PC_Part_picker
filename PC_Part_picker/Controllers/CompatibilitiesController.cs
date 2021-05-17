@@ -59,7 +59,6 @@ namespace PC_Part_picker.Controllers
             if (ModelState.IsValid)
             {
                 var compatibility = new Compatibility();
-                twoPartCompatibilities.Compatibility = compatibility;
                 _context.Add(compatibility);
                 var firstCompatibility = new PartCompatibility();
                 firstCompatibility.Compatibility = compatibility;
@@ -77,6 +76,7 @@ namespace PC_Part_picker.Controllers
 
         private void AddPartIdToCompatibility(PartCompatibility partCompatibility, string indetification)
         {
+            partCompatibility.WipePartIds();
             var splitIdentification = indetification.Split('`');
             int id = int.Parse(splitIdentification[0]);
             string name = splitIdentification[1];
@@ -129,19 +129,35 @@ namespace PC_Part_picker.Controllers
         }
 
         // GET: Compatibilities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var compatibility = await _context.Compatibilities.FindAsync(id);
+            var compatibility = _context.Compatibilities
+                .Include(c => c.Parts).ThenInclude(p => p.Cpu)
+                .Include(c => c.Parts).ThenInclude(p => p.Cooler)
+                .Include(c => c.Parts).ThenInclude(p => p.Motherboard)
+                .Include(c => c.Parts).ThenInclude(p => p.Ram)
+                .Include(c => c.Parts).ThenInclude(p => p.Storage)
+                .Include(c => c.Parts).ThenInclude(p => p.Gpu)
+                .Include(c => c.Parts).ThenInclude(p => p.Psu)
+                .Include(c => c.Parts).ThenInclude(p => p.Case)
+                .FirstOrDefault(x => x.Id == id);
+
             if (compatibility == null)
             {
                 return NotFound();
             }
-            return View(compatibility);
+            var twoPartCompatibilities = new TwoPartCompatibilities();
+            twoPartCompatibilities.AllParts = getAllParts();
+            var compatibleParts = compatibility.Parts.ToList();
+            twoPartCompatibilities.FirstPartId = compatibleParts[0].Part.GetUniqueIdentification();
+            twoPartCompatibilities.SecondPartId = compatibleParts[1].Part.GetUniqueIdentification();
+            twoPartCompatibilities.Compatibility = compatibility;
+            return View(twoPartCompatibilities);
         }
 
         // POST: Compatibilities/Edit/5
@@ -149,34 +165,28 @@ namespace PC_Part_picker.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Compatibility compatibility)
+        public IActionResult Edit(int id, [Bind("Compatibility", "FirstPartId", "SecondPartId")] TwoPartCompatibilities twoPartCompatibilities)
         {
-            if (id != compatibility.Id)
+            if (id != twoPartCompatibilities.Compatibility.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(compatibility);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompatibilityExists(compatibility.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                var compatibility = _context.Compatibilities
+                    .Include(c => c.Parts)
+                    .FirstOrDefault(x => x.Id == id);
+                var firstPartCompatibility = compatibility.Parts.ToList()[0];
+                AddPartIdToCompatibility(firstPartCompatibility, twoPartCompatibilities.FirstPartId);
+                _context.Update(firstPartCompatibility);
+                var secondPartCompatibility = compatibility.Parts.ToList()[1];
+                AddPartIdToCompatibility(secondPartCompatibility, twoPartCompatibilities.SecondPartId);
+                _context.Update(secondPartCompatibility);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(compatibility);
+            return View(twoPartCompatibilities);
         }
 
         // POST: Compatibilities/Delete/5

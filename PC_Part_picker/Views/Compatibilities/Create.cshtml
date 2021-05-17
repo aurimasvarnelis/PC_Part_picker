@@ -22,14 +22,17 @@
                         listItems.Add(new SelectListItem
                         {
                             Text = p.Name,
-                            Value = p.Id.ToString() + "`" + p.Name
+                            Value = p.GetUniqueIdentification()
                         });
                     });
                 }
                 <label class="control-label">Select first part:</label>
                 @Html.DropDownListFor(model => model.FirstPartId, listItems, "-- First Part --")
+                <span asp-validation-for="FirstPartId" class="text-danger"></span>
                 <label class="control-label">Select second part:</label>
                 @Html.DropDownListFor(model => model.SecondPartId, listItems, "-- Second Part --")
+                <span asp-validation-for="SecondPartId" class="text-danger"></span>
+                <div></div>
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

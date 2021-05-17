@@ -45,6 +45,18 @@ namespace PC_Part_picker.Models
                 return null;
             }
         }
+
+        public void WipePartIds()
+        {
+            CPUId = null;
+            CaseId = null;
+            CoolerId = null;
+            GPUId = null;
+            MotherboardId = null;
+            PSUId = null;
+            RAMId = null;
+            StorageId = null;
+        }
     }
 
 
